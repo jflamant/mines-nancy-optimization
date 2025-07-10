@@ -1,0 +1,15 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 72b1a196-1109-4b5c-8eac-79921a6ed938
+  title: Mines Nancy - Optimization course
+  # description:
+  # keywords: []
+  # authors: []
+  github: https://github.com/jflamant/mines-nancy-optimization
+  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+site:
+  template: book-theme
+  # options:
+  #   favicon: favicon.ico
+  #   logo: site_logo.png

@@ -1,0 +1,11 @@
+[project]
+name = "mines-nancy-optimization"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "jupyter-book>=2.0.0a0",
+    "matplotlib>=3.10.3",
+    "numpy>=2.3.1",
+]

@@ -1,3 +1,6 @@
+---
+numbering: false
+---
 # D
 
 Bonjour, et bienvenue!

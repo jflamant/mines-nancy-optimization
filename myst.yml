@@ -24,6 +24,9 @@ project:
         - file: contents/chapter2/03-existence.md
         - file: contents/chapter2/04-convexity.md
         - file: contents/chapter2/05-optimality-conditions.md
+    - file: contents/chapter3/01-intro.md
+      children:
+        - file: contents/chapter3/02-first-example.md
   math: 
     '\diag': '\operatorname{diag}'
   numbering:

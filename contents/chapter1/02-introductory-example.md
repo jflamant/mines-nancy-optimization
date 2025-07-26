@@ -121,31 +121,14 @@ In summary, the solutions to the optimization problem are
 r^\star = \left[\frac{V_0}{2\pi}\right]^{1/3} \qquad \hat{h} = \frac{V_0}{\pi (r^\star)^2}= 2r^\star
 ```
 
-In this simple case, the solution is explicit and does not require a resolution algorithm. Note that this is not the case in general. 
+:::{warning}
+In this simple case, the solution is explicit and does not require a resolution algorithm. Keep in mind that this is not the case in general. 
+:::
 
 We can also check that our computations are correct using Python, by modifying the previous code.
 
 :::{code-cell} python
-# import libraries
-import numpy as np # for manipulation of arrays
-import matplotlib.pyplot as plt # for plotting
-
-# function definitions
-def h(r, V0=1000):
-    return V0 / (np.pi * r**2)
-
-def A_lids(r):
-    return 2 * np.pi * r**2
-
-def A_cylinder(r):
-    return 2 * np.pi * r * h(r)
-
-def A(r):
-    return A_couvercle(r) + A_cylindre(r)
-
-# define variables and constraints
-V0 = 1000  # volume in cm^3 (=1 L)
-r = np.linspace(1, 15, 100)  # vector of 100 values linearly spaced between 1 and 15
+# optimal value
 r_star= (V0/(2*np.pi))**(1/3)
 
 # do the plotting
@@ -158,6 +141,11 @@ plt.xlabel("radius r [cm]")
 plt.ylabel("objective value [cm^2]")
 plt.legend()
 plt.show()
+
+print(f"Optimal value of r minimizing A(r): r_opt = {r_star:.2f} cm")
+print(f"Minimal area A(r_opt): A_min = {A_lids(r_star) + A_cylinder(r_star):.2f} cm^2")
+print(f"Associated optimal height value h(r_opt): h_opt = {h(r_star):.2f} cm")
 :::
 
+You can play around with this code snippets and see how the solution change as we modify the value of $V_0$. 
 

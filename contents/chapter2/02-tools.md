@@ -112,7 +112,7 @@ As we shall see, the positive (semi)-definiteness of the Hessian matrix is cruci
 
 Among different versions of Taylor's theorem, the following will be useful for proofs later on.
 
-:::{prf:theorem} see e.g., @nocedal1999numerical 
+:::{prf:theorem} see e.g.,  @nocedal2006numerical [Theorem 2.1]
 :label: thm:taylor
 Suppose $f:\mathbb{R}^n\rightarrow \mathbb{R}$ is continuously differentiable and $p\in \mathbb{R}^n$. Then for some $t\in (0,1)$
 $$

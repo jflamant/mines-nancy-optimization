@@ -1,3 +1,9 @@
+---
+kernelspec:
+  name: python3
+  display_name: 'Python 3'
+---
+
 # Optimality conditions for unconstrained optimization
 
 First, we consider the unconstrained optimization problem
@@ -98,10 +104,28 @@ Suppose that $\nabla^2 f$ is continuous in an open neighborhood of $x^\star$ and
     Example: $f(x) = x^4$; the point $x^\star = 0$ is a strict local minimizer (and global as well) but $f''(0) = 0$ shows that the Hessian is not positive definite at this point.
 :::
 
-:::{exercise} Quadratic function  
+::::{exercise} Quadratic function  
 :class:dropdown
 Let $f:\mathbb{R}^2 \rightarrow \mathbb{R}$ such that $f(x) = x_1^2 - x_2^2$. Compute its gradient and Hessian. List critical points and their properties.
+
+To help, here is how to plot this function in Python. 
+
+:::{code-cell} python
+import numpy as np
+import matplotlib.pyplot as plt
+
+u = np.linspace(-1, 1, 128)
+x1, x2= np.meshgrid(u, u)
+
+plt.contourf(x1, x2, x1**2-x2**2)
+plt.colorbar()
+plt.xlabel(r'$x_1$')
+plt.ylabel(r'$x_2$');
 :::
+
+::::
+
+
 :::{exercise} Rosenbrock function
 :class:dropdown
 Let $f:\mathbb{R}^2 \rightarrow \mathbb{R}$ such that $f(x) = (1-x_1)^2 + 5(x_2-x_1^2)^2$.

@@ -87,7 +87,6 @@ The term **programming** refers to the process of **planning or decision-making*
 In the literature, you will encounter several equivalent notations for expressing the same optimization problem. In this lecture, we adopt the notation of @boyd2004convex, which uses the **minimize** and **subject to** keywords, for example:
 
 :::{math}
-:label: optim_pb
 \begin{array}{ll}
 \minimize & f_0(x) \\
 \st & x \in \Omega

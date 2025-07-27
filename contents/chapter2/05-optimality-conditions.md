@@ -149,5 +149,5 @@ A point $x^\star$ is a local optimum (hence global by [](#thm:uniqueness_cvx)) i
 :::{prf:remark}
 - If $f_0$ is strictly convex, then this theorem gives a characterization of the unique global optimum of the problem (when it exists).
 - Finding points such that $\nabla f_0 (x^\star) = 0$ (stationary points) is the foundation for many unconstrained optimization algorithms, even in the non-convex case.
-- In chapter 3, we'll see a very important application of this result to solve a very important category of optimization problems, called **least-squares** problems.
+- In chapter 3, we'll see a very important application of this result to solve a very important category of optimization problems, called (unconstrained) **least-squares** problems.
 :::

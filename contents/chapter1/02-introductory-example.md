@@ -147,5 +147,5 @@ print(f"Minimal area A(r_opt): A_min = {A_lids(r_star) + A_cylinder(r_star):.2f}
 print(f"Associated optimal height value h(r_opt): h_opt = {h(r_star):.2f} cm")
 :::
 
-You can play around with this code snippets and see how the solution change as we modify the value of $V_0$. 
+You can play around with this code snippets and see how the solution changes as we modify the value of $V_0$. 
 

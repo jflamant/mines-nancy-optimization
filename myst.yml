@@ -20,7 +20,9 @@ project:
     - file: contents/chapter1/01-intro.md
       children:
         - file: contents/chapter1/02-introductory-example.md
-        - file: contents/chapter1/03-general-form.md
+        - file: contents/chapter1/03-vocabulary.md
+        - file: contents/chapter1/04-general-form.md
+        - file: contents/chapter1/05-local-global-optima.md
     - file: contents/chapter2/01-intro.md
       children:
         - file: contents/chapter2/02-tools.md
@@ -32,6 +34,9 @@ project:
         - file: contents/chapter3/02-first-example.md
   math: 
     '\diag': '\operatorname{diag}'
+    '\st' : '\operatorname{subject\, to}'
+    '\minimize': '\operatorname{minimize}'
+    '\dom': '\operatorname{dom}'
   numbering:
     title: true
 

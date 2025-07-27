@@ -9,8 +9,8 @@ As explained before, this course focuses exclusively on **continuous** optimizat
 A general continuous optimization problem can be formulated as
 :::{math}
 :label: eq:general_optim
-\begin{array}{ll}
-\text{minimize}     & f_0(x) \\
+\begin{array}{lll}
+\text{minimize}     & f_0(x) & \\
 \text{subject to}   & f_i(x) \leq 0 & i = 1, \ldots, m\\
 & h_i(x)  = 0 & i = 1, \ldots, p
 \end{array}

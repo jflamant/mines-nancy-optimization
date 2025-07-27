@@ -10,7 +10,7 @@ project:
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
   exports:
   - format: pdf
-    template: plain_latex
+    template: plain_latex_book
   bibliography:
     - references.bib
 
@@ -23,6 +23,7 @@ project:
         - file: contents/chapter1/03-vocabulary.md
         - file: contents/chapter1/04-general-form.md
         - file: contents/chapter1/05-local-global-optima.md
+        - file: contents/chapter1/06-standard-opt-problems.md
     - file: contents/chapter2/01-intro.md
       children:
         - file: contents/chapter2/02-tools.md
@@ -36,7 +37,9 @@ project:
     '\diag': '\operatorname{diag}'
     '\st' : '\operatorname{subject\, to}'
     '\minimize': '\operatorname{minimize}'
+    '\maximize': '\operatorname{maximize}'
     '\dom': '\operatorname{dom}'
+
   numbering:
     title: true
 

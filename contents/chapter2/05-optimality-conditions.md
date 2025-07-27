@@ -10,18 +10,22 @@ First, we consider the unconstrained optimization problem
 
 ```{math}
 :label:optim-problem-unconstrained
-\min_{x \in \mathbb{R}^n} f(x)
+\begin{array}{ll}
+\minimize& f_0({x})\\
+\st & x \in \mathbb{R}^n
+\end{array}
 ```
 
-We assume that $f$ has "good" properties on $\mathbb{R}^n$, i.e., $f$ is twice continuously differentiable (or at least continuously differentiable).
+We assume that $f_0$ has "good" properties on $\mathbb{R}^n$, i.e., $f_0$ is twice continuously differentiable (or at least continuously differentiable).
 
-Provided minimizers exist (not always guaranteed!), we will derive conditions on a point $x^*$ to be a minimizer of the problem.
+Provided optima exist (not always guaranteed!), we will derive conditions on a point $x^\star$ to be a **local optimum** of the problem. (in the unconstrained case, one also says that $x^\star$ is a **local minimizer** of $f_0$).
+To be able to characterize **global optimality**, we'll need to assume convexity of the objective function $f_0$. 
 
 :::{important}
 Optimality conditions for the unconstrained optimization problem [](#optim-problem-unconstrained) can be of different types:
 
 - **Necessary**, **sufficient** or **necessary and sufficient**
-- **First-order** (i.e. involving $\nabla f$) or **second-order** (i.e. involving $\nabla^2 f$)
+- **First-order** (i.e. involving $\nabla f_0$) or **second-order** (i.e. involving $\nabla^2 f_0$)
 :::
 
 Most of the results from this section are reproduced from @nocedal2006numerical [Chapter 2], where detailed proofs are available. 
@@ -30,16 +34,16 @@ Most of the results from this section are reproduced from @nocedal2006numerical 
 
 :::{prf:theorem} First-order necessary conditions [@nocedal2006numerical, Theorem 2.2]
 :label:thm:necessary-unconstrained-first
-If $x^\star$ is a local minimizer and $f$ is continuously differentiable in an open neighborhood of $x^\star$, then $\nabla f (x^\star) = 0$.
+If $x^\star$ is a local optimum and $f_0$ is continuously differentiable in an open neighborhood of $x^\star$, then $\nabla f_0 (x^\star) = 0$.
 :::
 
-We call $x^\star$ a **stationary** or **critical** point of $f$ if $\nabla f(x^\star) = 0$.
+We call $x^\star$ a **stationary** or **critical** point of $f_0$ if $\nabla f_0(x^\star) = 0$.
 
-Any local minimizer must be a stationary point.
+Any local optima must be a stationary point.
 
 :::{prf:theorem} Second-order necessary conditions [@nocedal2006numerical, Theorem 2.3]
 :label:thm:necessary-unconstrained-second
-If $x^\star$ is a local minimizer and $f$ is twice continuously differentiable in an open neighborhood of $x^\star$, then $\nabla f(x^\star) = 0$ and $\nabla^2 f(x^\star) \succeq 0$ (is positive semidefinite).
+If $x^\star$ is a local optimum and $f_0$ is twice continuously differentiable in an open neighborhood of $x^\star$, then $\nabla f_0(x^\star) = 0$ and $\nabla^2 f_0(x^\star) \succeq 0$ (is positive semidefinite).
 :::
 
 :::{exercise}
@@ -47,24 +51,24 @@ If $x^\star$ is a local minimizer and $f$ is twice continuously differentiable i
 Prove [](#thm:necessary-unconstrained-first) and [](#thm:necessary-unconstrained-second) by contradiction using Taylor's theorem.
 :::
 
-:::::{warning} Having $\nabla f(x^\star) = 0$ is not (always) enough ...
+:::::{warning} Having $\nabla f_0(x^\star) = 0$ is not (always) enough ...
 [](#thm:necessary-unconstrained-first) and [](#thm:necessary-unconstrained-second) only give **necessary** conditions for a point $x^\star$ to be optimal. 
 Some possible situations in 1D.
 ::::{grid}
 
 :::{card}
-:header: $f''(x^\star) = 0$ (maximum)
+:header: $f_0''(x^\star) = 0$ (maximum)
 ![1D maxima](figures/1D_maxima.pdf)
 
 :::
 
 :::{card}
-:header: $f''(x^\star) = 0$ (saddle point)
+:header: $f''_0(x^\star) = 0$ (saddle point)
 ![1D saddle](figures/1D_saddle.pdf)
 :::
 
 :::{card}
-:header: $f''(x^\star) > 0$ (strict minimum)
+:header: $f''_0(x^\star) > 0$ (strict local optimum)
 ![1D strict minima](figures/1D_strict_minima.pdf)
 
 :::
@@ -73,18 +77,18 @@ For higher dimensions (here 2D), the situation is even more subtle.
 ::::{grid} 
 
 :::{card}
-:header: $\nabla^2 f (x^\star) \succ 0$ (strict minimum)
+:header: $\nabla^2 f_0 (x^\star) \succ 0$ (strict local optimum)
 ![2D strict](figures/2D_strict.png)
 
 :::
 
 :::{card}
-:header: $\nabla^2 f (x^\star) \succeq 0$ (saddle point)
+:header: $\nabla^2 f_0 (x^\star) \succeq 0$ (saddle point)
 ![2D saddle](figures/saddlepoint.png)
 :::
 
 :::{card}
-:header: $\nabla^2 f(x^\star) \succeq 0$ (many local minima)
+:header: $\nabla^2 f_0(x^\star) \succeq 0$ (many local optima)
 ![2D local minima](figures/2Dnonstrict.png)
 
 :::
@@ -94,12 +98,12 @@ For higher dimensions (here 2D), the situation is even more subtle.
 ### Sufficient conditions (unconstrained case)
 
 :::{prf:theorem} Second-order sufficient conditions [@nocedal2006numerical, Theorem 2.3]
-Suppose that $\nabla^2 f$ is continuous in an open neighborhood of $x^\star$ and that $\nabla f(x^\star) = 0$ and $\nabla^2 f(x^\star) \succ 0$ (is positive definite). Then $x^\star$ is a strict local minimizer of $f$.
+Suppose that $\nabla^2 f_0$ is continuous in an open neighborhood of $x^\star$ and that $\nabla f_0(x^\star) = 0$ and $\nabla^2 f_0(x^\star) \succ 0$ (is positive definite). Then $x^\star$ is a strict local optimum of [](#optim-problem-unconstrained), or equivalently, $x^\star$ is a strict local minimizer of $f_0$. 
 :::
 
 :::{prf:remark}
-- Sufficient conditions guarantee that the minimizer is a *strict* local minimizer. (Compare with the necessary conditions of [](#thm:necessary-unconstrained-first) and [](#thm:necessary-unconstrained-second))
-- These sufficient conditions are not necessary: a point $x^\star$ can fail to satisfy the conditions and yet be a strict minimizer.
+- Sufficient conditions guarantee that local optima are *strict*, i.e. they are isolated. (Compare with the necessary conditions of [](#thm:necessary-unconstrained-first) and [](#thm:necessary-unconstrained-second))
+- These sufficient conditions are not necessary: a point $x^\star$ can fail to satisfy the conditions and yet be a strict minimizer of $f_0$.
 
     Example: $f(x) = x^4$; the point $x^\star = 0$ is a strict local minimizer (and global as well) but $f''(0) = 0$ shows that the Hessian is not positive definite at this point.
 :::
@@ -135,15 +139,15 @@ Does the point $[1, 1]^\top$ satisfy the necessary conditions? the sufficient co
 
 ### Necessary and sufficient conditions (unconstrained case)
 
-When $f$ is convex there is a simple characterization of optimal points.
+When $f_0$ is convex there is a simple characterization of optimal points.
 
 :::{prf:theorem} Unconstrained convex problems
-Suppose that $f:\mathbb{R}^n\rightarrow \mathbb{R}$ is convex.  
-A point $x^\star$ is a local minimizer (hence global) of $f$ if and only if $x^\star$ is a stationary point of $f$, i.e., such that $\nabla f(x^\star) = 0$.
+Consider the unconstrained ptimization problem [](#optim-problem-unconstrained) and suppose that $f_0:\mathbb{R}^n\rightarrow \mathbb{R}$ is convex.  
+A point $x^\star$ is a local optimum (hence global by [](#thm:uniqueness_cvx)) if and only if $x^\star$ is a stationary point of $f_0$, i.e., such that $\nabla f_0(x^\star) = 0$.
 :::
 
 :::{prf:remark}
-- If $f$ is strictly convex, then the theorem gives a characterization of the unique global minimizer of the problem (when it exists).
-- Finding points such that $\nabla f (x^\star) = 0$ (stationary points) is the foundation for many unconstrained optimization algorithms, even in the non-convex case.
+- If $f_0$ is strictly convex, then this theorem gives a characterization of the unique global optimum of the problem (when it exists).
+- Finding points such that $\nabla f_0 (x^\star) = 0$ (stationary points) is the foundation for many unconstrained optimization algorithms, even in the non-convex case.
 - In chapter 3, we'll see a very important application of this result to solve a very important category of optimization problems, called **least-squares** problems.
 :::

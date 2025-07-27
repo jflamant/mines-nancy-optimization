@@ -18,7 +18,6 @@ Recall from the previous chapter that when $\Omega = \mathbb{R}^n$ the problem [
 :::{important} Key notions of the chapter
 - Review of elementary results from multivariable calculus and algebra
 - Notions of **gradient**, **Hessian**, and **convexity**
-- **Existence** and **uniqueness** results for minimizers
-- For **unconstrained problems**, necessary and sufficient **optimality conditions** for a point to be a minimizer.
-
+- **Existence** and **uniqueness** results for solutions
+- For **unconstrained problems**, necessary and sufficient **optimality conditions** for a point to be a solution.
 :::

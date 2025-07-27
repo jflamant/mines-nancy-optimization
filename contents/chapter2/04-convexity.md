@@ -1,4 +1,4 @@
-# Convexity
+# Convexity and uniqueness of solutions
 
 Convexity is a key tool to study **uniqueness** of solutions in optimization.
 
@@ -26,8 +26,8 @@ Equation [](#eq:convex_set) states that, for every ${x}_1, {x}_2 \in \mathcal{C}
 ## Convex functions
 :::{prf:definition} Convex function
 :label:def:convex_function
-Let $\Omega \subset \mathbb{R}^n$ be a convex set. 
-The function $f:\Omega \rightarrow \mathbb{R}$ is said to be convex if for every ${x}_1, {x}_2 \in \Omega$ and for every $\theta \in [0, 1]$, one has
+Let $\Omega \subseteq \mathbb{R}^n$ be a convex set. 
+The function $f:\Omega \rightarrow \mathbb{R}$ is said to be convex (on $\Omega$) if for every ${x}_1, {x}_2 \in \Omega$ and for every $\theta \in [0, 1]$, one has
 $$f(\theta{x}_1 + (1-\theta){x}_2) \leq \theta f({x}_1) + (1-\theta)f({x}_2)$$
 and strictly convex if the inequality is strict.
 :::
@@ -58,7 +58,7 @@ and strictly convex if the inequality is strict.
 :::::
 
 ## Useful characterization results for convex functions
-In the following we give two practical theorem to characterize the convexity of functions $f:\Omega \to \mathbb{R}$, where $\Omega \subset \mathbb{R}^n$ is a convex set. We assume sufficient smoothness (e.g., $f \in C^1$ or $f\in C^2$). To simplify we state results for $\Omega = \mathbb{R}^n$, but the extension to arbitrary convext sets is direct. 
+In the following we give two practical theorem to characterize the convexity of functions $f:\Omega \to \mathbb{R}$, where $\Omega \subseteq \mathbb{R}^n$ is a convex set. We assume sufficient smoothness (e.g., $f \in C^1$ or $f\in C^2$). To simplify we state results for $\Omega = \mathbb{R}^n$, but the extension to arbitrary convext sets is direct. 
 :::{prf:theorem} First order
 :label:thm:first_order_convexity
 Let $f:\mathbb{R}^n \rightarrow\mathbb{R}$ be differentiable. These statements are equivalent:
@@ -86,14 +86,19 @@ A classical counter-example is $f:\mathbb{R} \to \mathbb{R}$ such that $f(x) = x
 
 Consider the following optimization problem 
 $$
-\min_{x \in \Omega} f(x)
+\label{eq:prob_cvx_uniquness}
+\begin{array}{ll}
+\minimize& f_0({x})\\
+\st & x \in \Omega
+\end{array}
 $$
 
 The following theorem is very useful. 
 :::{prf:theorem}
-Suppose that $f$ is a convex function and that $\Omega\subset \mathbb{R}^N$ is a convex set. Then:
-- any local minimizer is a global minimizer
-- if $f$ is strictly convex, there is at most one (global) minimizer.
+:label: thm:uniqueness_cvx
+Suppose that $f_0$ is a convex function and that $\Omega\subseteq \mathbb{R}^n$ is a convex set. Then for the problem [](#eq:prob_cvx_uniquness), 
+- any local optima is a global optima
+- if $f_0$ is strictly convex, there is at most one (global) optima.
 :::
 :::{prf:proof}
 :enumerated:false
@@ -101,13 +106,31 @@ Suppose that $f$ is a convex function and that $\Omega\subset \mathbb{R}^N$ is a
 **Exercise!** (hint: by contradiction)
 :::
 
+:::{danger}
+[](#thm:uniqueness_cvx) does not say anything about existence of solutions! In fact, a convex optimization problem can admit no solution ( e.g., infeasible, unbounded below, or no point achieving $p^\star$). For instance, the optimization problem 
+$$
+\begin{array}{ll}
+\minimize& e^x\\
+\st & x \in \mathbb{R}
+\end{array}
+$$
+admits no solution ($p^\star = 0$, but never attained). Yet it is convex optimization problem with $f_0$ strictly convex. 
+:::
+
 ## More comments on convex functions
 - By definition, $f$ is (strictly) concave iff $-f$ is  (strictly) convex
 -  Optimization problems of the form 
-$$ \min_{x\in \Omega} f(x)$$
-    where $f$ is a convex function and $\Omega\subset \mathbb{R}^N$ is a convex set are called **convex optimization problems**. It is one of the most successful field in numerical optimization. 
+$$\begin{array}{ll}
+\minimize& f_0({x})\\
+\st & x \in \Omega
+\end{array}$$
+    where $f_0$ is a convex function and $\Omega\subseteq \mathbb{R}^n$ is a convex set are called **convex optimization problems**. 
+    It is one of the most successful field in numerical optimization. 
 - the special (and important!) case of **quadratic functions**
    $$
     f(x) = x^\top {Q}x + {p}^\top x + {r} \qquad (\text{with }{Q} = {Q}^\top)
     $$
-    **Exercise** show that $f$ is (resp. strictly) convex iff ${Q} \succeq 0$ (resp. ${Q}\succ 0$). What can we say about the minimizers of the problem $\min_{x\in \mathbb{R}^N} f(x)$?
+
+    :::{exercise}
+    Show that $f$ is (resp. strictly) convex iff ${Q} \succeq 0$ (resp. ${Q}\succ 0$). What can we say about the solutions of the problem $\minimize f(x) \st x \in \mathbb{R}^n$?
+:::

@@ -64,12 +64,54 @@ $$\begin{array}{ll}
 Consider the domain $\mathcal{D} = \mathbb{R}_+$. Consider several objective functions:
 - $f_0(x) = 1-e^{-x}$. We have $p^\star = 0$, uniquenely attained for $x^\star = 0$. 
 - $f_0(x) = e^{-x} - 1$.  We have $p^\star = -1$, however it is never attained since $f_0(x) \to -1$ as $x\to +\infty$. 
-- $f_0(x) = -x^2$. Clearly, $f(x) \to -\infty$ as $x \to +\infty$. Therefore, the problem is unbounded below. 
+- $f_0(x) = -x^2$. Clearly, $f_0(x) \to -\infty$ as $x \to +\infty$. Therefore, the problem is unbounded below. 
 :::
 
 In the next section, we will see the notion of global and local optima. 
 
-## About notations
+## About notations and terminology
 
+Many names are used in the literature to refer to the field of optimization, including:
+- **mathematical programming**
+- **mathematical optimization**
+- **numerical optimization**
 
+All these terms refer to the study of **optimization problems** and are used interchangeably. 
+
+:::{prf:remark}
+The term **programming** refers to the process of **planning or decision-making** rather than writing computer code. Historically, it was used to describe methods for organizing and solving mathematical models to find the best possible outcome under given constraints. In other terms, *programming* means constructing an optimal plan or strategy, not writing software.
+:::
+
+### How to write an optimization problem? 
+
+In the literature, you will encounter several equivalent notations for expressing the same optimization problem. In this lecture, we adopt the notation of @boyd2004convex, which uses the **minimize** and **subject to** keywords, for example:
+
+:::{math}
+:label: optim_pb
+\begin{array}{ll}
+\minimize & f_0(x) \\
+\st & x \in \Omega
+\end{array}
+:::
+
+In more mathematical or theoretical contexts, the same problem is often written as:
+$$
+\inf_{\mathbf{x} \in \Omega} f_0(\mathbf{x}).
+$$
+
+Some classical textbooks (e.g., [@nocedal2006numerical]) use the more compact notation:
+$$
+\min_{\mathbf{x} \in \Omega} f_0(\mathbf{x}),
+$$
+which is widely accepted, even though technically the minimum may not exist (e.g., if the function is unbounded below).
+
+To emphasize interest in actual **solutions** of the optimization problem, one often writes:
+$$
+x^\star \in \arg\min_{\mathbf{x} \in \Omega} f_0(\mathbf{x}),
+$$
+a notation frequently encountered in fields like signal processing.
+
+:::{important}
+Despite differences in notation, all of these expressions refer to the **same underlying optimization problem**!
+:::
 

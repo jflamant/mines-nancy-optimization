@@ -4,7 +4,9 @@
 name: Jupyter Book (via myst) GitHub Pages Deploy
 on:
   push:
-    # Runs on pushes targeting the default branch
+    branches: [main]
+  pull_request:
+    types: [closed]
     branches: [main]
 env:
   # `BASE_URL` determines, relative to the root of the domain, the URL that your site is served from.

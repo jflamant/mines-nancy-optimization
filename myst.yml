@@ -46,9 +46,9 @@ project:
 
 site:
   template: book-theme
-  nav:
-    - title: Lab Work
-      url: /lab-work
+  # nav:
+  #   - title: Lab Work
+  #     url: /lab-work
   options:
     logo: site_logo.png
   #   favicon: favicon.ico

@@ -5,14 +5,14 @@ title: Welcome!
 
 Welcome to the website of the 2025-2026 optimization course at Mines Nancy.
 
+:::{warning} In construction! 
+These lectures notes are still in construction, and will be updated throughout the first semester of 2025-2026. 
+:::
 
 ## What to expect from this course
 
 > In short: an hands-on introduction to numerical optimization with Python
 
-:::{warning} In construction! 
-These lectures notes are still in construction, and will be updated throughout the first semester of 2025-2026. 
-:::
 
 :::{hint} Objectives
 - Learn the basics of optimization: terminology, zoology of problems, key principles

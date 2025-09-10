@@ -32,6 +32,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v3
+      - name: Install ImageMagick and cwebp
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick webp
+
       - uses: actions/setup-node@v4
         with:
           node-version: 18.x

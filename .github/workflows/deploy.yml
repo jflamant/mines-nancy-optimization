@@ -38,11 +38,9 @@ jobs:
           key: ${{ runner.os }}-uv-${{ hashFiles('requirements.txt', 'pyproject.toml') }}
           restore-keys: |
             ${{ runner.os }}-uv-
-
-      - name: Install ImageMagick and cwebp
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y imagemagick webp
+          run: |
+            sudo apt-get update
+            sudo apt-get install -y imagemagick webp
 
       - uses: actions/setup-node@v4
         with:
@@ -63,7 +61,7 @@ jobs:
       - name: Build HTML Assets (faster)
         run: |
           source .venv/bin/activate
-          uv run jupyter-book build --html --keep-going --execute
+          uv run jupyter-book build --html --execute
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

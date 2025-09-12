@@ -2,7 +2,7 @@
 numbering: false
 title: Welcome!
 ---
-
+[![build](https://github.com/jflamant/mines-nancy-optimization/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/jflamant/mines-nancy-optimization/actions/workflows/deploy.yml)
 Welcome to the website of the 2025-2026 optimization course at Mines Nancy.
 
 :::{warning} In construction! 

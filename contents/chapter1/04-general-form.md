@@ -61,7 +61,7 @@ Consider the optimization problem in one dimension ($n=1$)
 $$\begin{array}{ll}
 \minimize& f_0(x)\\
 \st & x \geq 0 \end{array}$$
-The domain is therefore $\mathcal{D} = \mathbb{R}_+$. Consider several objective functions:
+Assume that $\dom f_0 = \mathbb{R}$, so that the domain of the optimization problem is $\mathcal{D} = \mathbb{R}_+$. Consider several objective functions:
 - $f_0(x) = 1-e^{-x}$. We have $p^\star = 0$, uniquenely attained for $x^\star = 0$. 
 - $f_0(x) = e^{-x} - 1$.  We have $p^\star = -1$, however it is never attained since $f_0(x) \to -1$ as $x\to +\infty$. 
 - $f_0(x) = -x^2$. Clearly, $f_0(x) \to -\infty$ as $x \to +\infty$. Therefore, the problem is unbounded below. 

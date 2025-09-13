@@ -57,11 +57,11 @@ where $\Omega$ is the feasible set defined in [](#eq:feasible_set). Depending on
     - the optimal value $p^\star$ is never attained, i.e., there is no $x^\star$ such solves the problem. 
 
 :::{prf:example}
-Consider the **unconstrained** optimization problem in one dimension ($n=1$)
+Consider the optimization problem in one dimension ($n=1$)
 $$\begin{array}{ll}
 \minimize& f_0(x)\\
-\st & x \in \mathbb{R}\end{array}$$
-Consider the domain $\mathcal{D} = \mathbb{R}_+$. Consider several objective functions:
+\st & x \geq 0 \end{array}$$
+The domain is therefore $\mathcal{D} = \mathbb{R}_+$. Consider several objective functions:
 - $f_0(x) = 1-e^{-x}$. We have $p^\star = 0$, uniquenely attained for $x^\star = 0$. 
 - $f_0(x) = e^{-x} - 1$.  We have $p^\star = -1$, however it is never attained since $f_0(x) \to -1$ as $x\to +\infty$. 
 - $f_0(x) = -x^2$. Clearly, $f_0(x) \to -\infty$ as $x \to +\infty$. Therefore, the problem is unbounded below. 

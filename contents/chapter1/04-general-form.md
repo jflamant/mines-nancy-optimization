@@ -95,18 +95,18 @@ In the literature, you will encounter several equivalent notations for expressin
 
 In more mathematical or theoretical contexts, the same problem is often written as:
 $$
-\inf_{\mathbf{x} \in \Omega} f_0(\mathbf{x}).
+\inf_{x \in \Omega} f_0(x).
 $$
 
 Some classical textbooks (e.g., [@nocedal2006numerical]) use the more compact notation:
 $$
-\min_{\mathbf{x} \in \Omega} f_0(\mathbf{x}),
+\min_{x \in \Omega} f_0(x),
 $$
-which is widely accepted, even though technically the minimum may not exist (e.g., if the function is unbounded below).
+which is widely accepted, even though technically the minimum may not exist (e.g., if the problem is unbounded below).
 
 To emphasize interest in actual **solutions** of the optimization problem, one often writes:
 $$
-x^\star \in \arg\min_{\mathbf{x} \in \Omega} f_0(\mathbf{x}),
+x^\star \in \arg\min_{x \in \Omega} f_0(x),
 $$
 a notation frequently encountered in fields like signal processing.
 

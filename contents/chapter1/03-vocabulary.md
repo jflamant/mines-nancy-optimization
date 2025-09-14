@@ -18,7 +18,7 @@ This formulation is intentionally general and not yet operational, but it suffic
 - $x = [x_1, x_2, \ldots, x_n]^\top \in \mathbb{X}^n$: the vector of **decision variables** (or **parameters**) over which the optimization is performed.
 - $n$: the number of decision variables; also referred to as the **dimension** of the problem.
 - $f_0: \mathbb{X}^n \rightarrow \mathbb{R}$: the **objective function**, also known as the **cost function** or **criterion**, which assigns a scalar value to each candidate solution.
-- $\Omega \subseteq \mathbb{X}^n$: the **feasible set** or **constraint set**, which contains all values of $x$ that satisfy the problem's constraints. In practice, $\Omega$ is often implicitly defined through **equality** and **inequality constraints**.
+- $\Omega \subseteq \mathbb{X}^n$: the **constraint set**, which contains all values of $x$ that satisfy the problem's constraints. In practice, $\Omega$ is often implicitly defined through **equality** and **inequality constraints**.
 
 ## Nomenclature
 

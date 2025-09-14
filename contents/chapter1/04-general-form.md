@@ -33,24 +33,29 @@ For instance, for a function $x \mapsto f(x)=\log(x)$, the domain is $\dom f = \
 :::{math}
 :label: eq:feasible_set
 
-\Omega = \{ x \in \mathcal{D} \mid f_i(x) \leq 0, i=1, \ldots, m,\; h_j(x) = 0, j=1, \ldots, p \}.
+\mathcal{F} = \{ x \in \mathcal{D} \mid f_i(x) \leq 0, i=1, \ldots, m,\; h_j(x) = 0, j=1, \ldots, p \}.
 :::
-if $\Omega = \emptyset$, there are no feasible point and we say the problem is **infeasible**. Otherwise, if there is at least one feasbile point, the problem is said to be **feasible**. 
+if $\mathcal{F} = \emptyset$, there are no feasible point and we say the problem is **infeasible**. Otherwise, if there is at least one feasbile point, the problem is said to be **feasible**. 
 
 ::::{prf:remark} Domain of definition
 The domain $\mathcal{D}$ of the objective and constraint functions imposes **implicit constraints** on the optimization problem. Even if not explicitly stated, a candidate solution must lie in $\mathcal{D}$ for the functions to be well-defined. 
 However, note that in many settings of the course, functions will be well defined over $\mathbb{R}^n$, i.e., $\mathcal{D}=\mathbb{R}^n$, and the domain will be implicit. 
 ::::
 
+::::{prf:remark} Feasible set or constraint set? 
+The difference between $\Omega$ (constraint set) and $\mathcal{F}$ (feasible set) is subtle (in fact the two terms are often used interchangeably). Formally, the constraint set is $\Omega = \{x \in \mathbb{R}^n \mid f_i(x) \leq 0, i=1, \ldots, m,\; h_j(x) = 0, j=1, \ldots, p \}$ (even if some constraint functions are not explicitly defined on the whole $\mathbb{R}^n$). 
+On the other hand, the feasible space is $\mathcal{F} = \mathcal{D} \cap \Omega$ - see [](#eq:feasible_set). When $\mathcal{D} = \mathbb{R}^n$ (i.e., there are no implicit constraints) then $\mathcal{F} = \Omega$ and the two sets correspond exactly (this will be very often the case in this course).
+::::
+
 ## Optimal value and optimal points
 
-An optimization problem seeks to find the **optimal value** of the objective function over the feasible set. Formally, the **optimal value** $p^\star$ is defined as:
+An optimization problem seeks to find the **optimal value** of the objective function over the constraint set. Formally, the **optimal value** $p^\star$ is defined as:
 $$
-p^\star = \inf_{x \in \Omega} f_0(x),
+p^\star = \inf_{x \in \mathcal{F}} f_0(x),
 $$
-where $\Omega$ is the feasible set defined in [](#eq:feasible_set). Depending on the problem, three situations may arise:
+where $\mathcal{F}$ is the feasible set defined in [](#eq:feasible_set). Depending on the problem, three situations may arise:
 
-- if the problem is **infeasible** (i.e., $\Omega = \emptyset$) we set by convention $p^\star = +\infty$.
+- if the problem is **infeasible** (i.e., $\mathcal{F} = \emptyset$) we set by convention $p^\star = +\infty$.
 - if there exists a sequence of feasible points $x_k$ such that $f_0(x_k) \to -\infty$ as $k\to + \infty$, then $p^\star = -\infty$ and we say the problem is **unbounded below**.
 - if $p^\star$ is finite, then we have to distinguish between two situations: 
     - there exists a feasible $x^\star$ such that $f(x^\star) = p^\star$. In this case, we say $x^\star$ is **optimal** and the optimal value is **attained**. We also say the problem [](#eq:general_optim) has a **solution $x^\star$ with optimal value $p^\star$**. Note that they might be more than one $x^\star$ that attains the optimal value!
@@ -61,7 +66,9 @@ Consider the optimization problem in one dimension ($n=1$)
 $$\begin{array}{ll}
 \minimize& f_0(x)\\
 \st & x \geq 0 \end{array}$$
-Assume that $\dom f_0 = \mathbb{R}$, so that the domain of the optimization problem is $\mathcal{D} = \mathbb{R}_+$. Consider several objective functions:
+Assume that $\dom f_0 = \mathbb{R}$, so that the domain of the optimization problem is $\mathcal{D} = \mathbb{R}$. We also have $\Omega = \mathbb{R}_+$. 
+The feasible set is therefore $\mathcal{F} = \mathcal{D} \cap \mathcal{\Omega} = \mathbb{R}_+$. 
+Consider several objective functions:
 - $f_0(x) = 1-e^{-x}$. We have $p^\star = 0$, uniquenely attained for $x^\star = 0$. 
 - $f_0(x) = e^{-x} - 1$.  We have $p^\star = -1$, however it is never attained since $f_0(x) \to -1$ as $x\to +\infty$. 
 - $f_0(x) = -x^2$. Clearly, $f_0(x) \to -\infty$ as $x \to +\infty$. Therefore, the problem is unbounded below. 

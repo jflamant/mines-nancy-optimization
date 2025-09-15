@@ -11,7 +11,7 @@ $$\label{eq:optim}
 \st & x \in \Omega
 \end{array}
 $$
-where $f_0 : \mathbb{R}^n \to \mathbb{R}$ is the objective function. For simplicity, we assume (unless otherwise stated) that the domain of [](#eq:optim) is $\mathbb{R}^n$. 
+where $f_0 : \mathbb{R}^n \to \mathbb{R}$ is the objective function. For simplicity, we assume (unless otherwise stated) that the domain of [](#eq:optim) is $\mathcal{D} = \mathbb{R}^n$. Therefore the constraint set $\Omega$ and feasible set $\mathcal{F}$ coincide. 
 
 Recall from the previous chapter that when $\Omega = \mathbb{R}^n$ the problem [](#eq:optim) the problem is said to be unconstrained; otherwise, if $\Omega \subset \mathbb{R}^n$, we say that [](#eq:optim) is a constrained optimization problem. 
 

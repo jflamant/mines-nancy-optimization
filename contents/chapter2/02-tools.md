@@ -40,14 +40,14 @@ Probably two of the most important tools for this lecture!
 
 :::{prf:definition} Gradient
 Assume $f:\mathbb{R}^n \rightarrow \mathbb{R}$ is at least of class $C^1$.
-For $a \in \mathbb{R}^n$, the vector of partial derivatives
+For $a \in \mathbb{R}^n$, the (column) vector of partial derivatives
 $$
 \nabla f (a) = \begin{bmatrix}
-    \dfrac{\partial f}{\partial x_1}(a)\\
-    \dfrac{\partial f}{\partial x_2}(a)\\
-    \vdots\\
+    \dfrac{\partial f}{\partial x_1}(a)&
+    \dfrac{\partial f}{\partial x_2}(a)&
+    \cdots&
     \dfrac{\partial f}{\partial x_N}(a)
-\end{bmatrix}
+\end{bmatrix}^\top
 \in \mathbb{R}^n
 $$
 is called the **gradient of $f$ at point $a$**.
@@ -63,17 +63,17 @@ Let $f: \mathbb{R}^n \rightarrow \mathbb{R}$ be of class $C^2$.
 For $a \in \mathbb{R}^n$, the matrix
 $$
 \nabla^2 f(a) = \begin{bmatrix}
-    \frac{\partial^2 f}{{\partial x_1}^2}(a) & \frac{\partial^2 f}{\partial x_1\partial x_2}(a) & \cdots & \frac{\partial^2 f}{\partial x_1\partial x_N}(a) \\
-    \frac{\partial^2 f}{\partial x_2\partial x_1}(a) & \frac{\partial^2 f}{{\partial x_2}^2}(a) & \cdots & \frac{\partial^2 f}{\partial x_2\partial x_N}(a) \\
+    \frac{\partial^2 f}{{\partial x_1}^2}(a) & \frac{\partial^2 f}{\partial x_1\partial x_2}(a) & \cdots & \frac{\partial^2 f}{\partial x_1\partial x_n}(a) \\
+    \frac{\partial^2 f}{\partial x_2\partial x_1}(a) & \frac{\partial^2 f}{{\partial x_2}^2}(a) & \cdots & \frac{\partial^2 f}{\partial x_2\partial x_n}(a) \\
     \vdots & \vdots & \ddots & \vdots \\
-    \frac{\partial^2 f}{\partial x_N\partial x_1}(a) & \frac{\partial^2 f}{\partial x_N\partial x_2}(a) & \cdots & \frac{\partial^2 f}{{\partial x_N}^2}(a)
-\end{bmatrix} \in \mathbb{R}^{N\times N}
+    \frac{\partial^2 f}{\partial x_n\partial x_1}(a) & \frac{\partial^2 f}{\partial x_n\partial x_2}(a) & \cdots & \frac{\partial^2 f}{{\partial x_n}^2}(a)
+\end{bmatrix} \in \mathbb{R}^{n\times n}
 $$
 is called the **Hessian matrix of $f$ at point $a$**. Sometimes the notation $\mathsf{Hess}\,f (a)$ is also used. 
 :::
 
 :::{prf:remark} Important!
-Since $f$ is of class $C^2$ on $\mathbb{R}^n$, Schwarz's theorem ensures that for every $a \in \mathbb{R}^n$:
+Since $f$ is of class $C^2$ on $\mathbb{R}^n$, [Schwarz's theorem](https://en.wikipedia.org/wiki/Symmetry_of_second_derivatives) ensures that for every $a \in \mathbb{R}^n$:
 $$
 \frac{\partial^2 f}{\partial x_i \partial x_j}(a) = \frac{\partial^2 f}{\partial x_j \partial x_i}(a) \quad \text{for all } (i, j).
 $$

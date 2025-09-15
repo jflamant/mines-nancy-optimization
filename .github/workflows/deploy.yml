@@ -38,10 +38,12 @@ jobs:
           key: ${{ runner.os }}-uv-${{ hashFiles('requirements.txt', 'pyproject.toml') }}
           restore-keys: |
             ${{ runner.os }}-uv-
-          run: |
-            sudo apt-get update
-            sudo apt-get install -y imagemagick webp
+      - name: Install ImageMagick
+        uses: mfinelli/setup-imagemagick@v6
+        with:
+          cache: true
 
+    
       - uses: actions/setup-node@v4
         with:
           node-version: 18.x

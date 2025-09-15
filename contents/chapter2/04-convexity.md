@@ -36,22 +36,22 @@ and strictly convex if the inequality is strict.
 ::::{grid} 1 2 2 2
 :::{card}
 :header: strictly convex function
-:::{figure} figures/convexExample0.pdf
+:::{figure} figures/convexExample0.png
 :::
 
 :::{card}
 :header: strictly convex function
-:::{figure} figures/convexExample1.pdf
+:::{figure} figures/convexExample1.png
 :::
 
 :::{card}
 :header: convex function
-:::{figure} figures/convexExample2.pdf
+:::{figure} figures/convexExample2.png
 :::
 
 :::{card}
 :header: non-convex function
-:::{figure} figures/convexExample3.pdf
+:::{figure} figures/convexExample3.png
 :::
 
 ::::

@@ -58,18 +58,18 @@ Some possible situations in 1D.
 
 :::{card}
 :header: $f_0''(x^\star) = 0$ (maximum)
-![1D maxima](figures/1D_maxima.pdf)
+![1D maxima](figures/1D_maxima.png)
 
 :::
 
 :::{card}
 :header: $f''_0(x^\star) = 0$ (saddle point)
-![1D saddle](figures/1D_saddle.pdf)
+![1D saddle](figures/1D_saddle.png)
 :::
 
 :::{card}
 :header: $f''_0(x^\star) > 0$ (strict local optimum)
-![1D strict minima](figures/1D_strict_minima.pdf)
+![1D strict minima](figures/1D_strict_minima.png)
 
 :::
 ::::

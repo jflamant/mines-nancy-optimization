@@ -37,13 +37,7 @@ jobs:
           path: .venv
           key: ${{ runner.os }}-uv-${{ hashFiles('requirements.txt', 'pyproject.toml') }}
           restore-keys: |
-            ${{ runner.os }}-uv-
-      - name: Install ImageMagick
-        uses: mfinelli/setup-imagemagick@v6
-        with:
-          cache: true
-
-    
+            ${{ runner.os }}-uv-   
       - uses: actions/setup-node@v4
         with:
           node-version: 18.x

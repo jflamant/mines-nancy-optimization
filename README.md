@@ -2,6 +2,8 @@
 numbering: false
 title: Welcome!
 ---
+[![build](https://github.com/jflamant/mines-nancy-optimization/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/jflamant/mines-nancy-optimization/actions/workflows/deploy.yml)
+![last commit)](https://img.shields.io/github/last-commit/jflamant/mines-nancy-optimization/main)
 
 Welcome to the website of the 2025-2026 optimization course at Mines Nancy.
 
@@ -31,7 +33,7 @@ These lectures notes are still in construction, and will be updated throughout t
 
 - **Bring your computer to class!** We'll alternate between exercices on paper and on the computer. 
 
-- Lecture slides, exercise sheets and additional documents are all available from the [Arche website](). (Internal access only). 
+- Lecture slides, exercise sheets and additional documents are all available from the [Arche website](https://arche.univ-lorraine.fr/course/view.php?id=74098). (Internal access only). 
 
 :::{note} Prerequisites
 The course requires basic notions of elementary differential calculus and linear algebra. It assumes you have some notions of Python, and some knowledge of the standard libraries (NumPy, matplotlib)

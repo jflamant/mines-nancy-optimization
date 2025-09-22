@@ -18,7 +18,7 @@ They formulate one explicit **constraint**: the volume of the can must be $V_0 =
 :::
 
 :::{card}
-:::{figure} figures/cylinder.pdf
+:::{figure} figures/cylinder.png
 :height:200px
 :::
 ::::

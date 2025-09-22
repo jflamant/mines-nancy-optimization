@@ -7,9 +7,9 @@ $$\label{eq:prob}
 \st & x \in \Omega
 \end{array}
 $$
-where $\Omega \subseteq \mathbb{R}^n$ is the feasible set. 
+where $\Omega \subseteq \mathbb{R}^n$ is the feasible set. (Recall we assume that the domain of [](#eq:prob) is $\mathcal{D} = \mathbb{R}^n$, so the notion of feasible and constraint set coincide.) 
 Under which conditions can we guarantee existence of a solution to the problem [](#eq:prob)? 
-Recall that we say that $x$ is a solution of [](#eq:prob) if the optimal value $p^\star$ is finite, and attained at $x$, i.e., $f_0(x) = p^\star$. 
+Recall that we say that $x$ is a solution of [](#eq:prob) if the optimal value $p^\star$ is finite, and attained at $x$, i.e., $f_0(x) = p^\star$. (see [](../chapter1/04-general-form.md/#optimal-value-and-optimal-points)).
 
 In this course we work in finite dimensions only. The theorem below provides two sufficient conditions, which depend on the nature of the set $\Omega$. 
 
@@ -27,7 +27,7 @@ As expected, if $\Omega = \emptyset$, the problem is not feasible, hence there a
 :::
 
 :::{prf:remark}
-The set $\mathbb{R}^n$ is both open and closed. Therefore, according to [](#thm:existence), for optimization problems of the form 
+The set $\mathbb{R}^n$ is both open and closed. Therefore, according to [](#thm:existence), for unconstrained optimization problems, i.e., problems of the form
 $$\begin{array}{ll}
 \minimize& f_0({x})\\
 \st & x \in \mathbb{R}^n
@@ -45,7 +45,7 @@ $$
 \st & x \in \Omega
 \end{array}
 $$
-For the sets $\Omega$ and objective functions below, characterize the existence of solutions to this optimization problem
+For the sets $\Omega$ and objective functions below, characterize the existence of solutions to this optimization problem:
 - $\Omega = [-1, 1]$ and $f_0(x) = x^3 + x^2 + 1$
 - $\Omega = \mathbb{R}$ and $f_0(x) = x^3 + x^2 + 1$
 - $\Omega = \mathbb{R}$ and $f_0(x) = x^4 + 3 x^2 -3$

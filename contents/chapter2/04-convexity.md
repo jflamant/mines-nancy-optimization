@@ -36,29 +36,29 @@ and strictly convex if the inequality is strict.
 ::::{grid} 1 2 2 2
 :::{card}
 :header: strictly convex function
-:::{figure} figures/convexExample0.pdf
+:::{figure} figures/convexExample0.png
 :::
 
 :::{card}
 :header: strictly convex function
-:::{figure} figures/convexExample1.pdf
+:::{figure} figures/convexExample1.png
 :::
 
 :::{card}
 :header: convex function
-:::{figure} figures/convexExample2.pdf
+:::{figure} figures/convexExample2.png
 :::
 
 :::{card}
 :header: non-convex function
-:::{figure} figures/convexExample3.pdf
+:::{figure} figures/convexExample3.png
 :::
 
 ::::
 :::::
 
 ## Useful characterization results for convex functions
-In the following we give two practical theorem to characterize the convexity of functions $f:\Omega \to \mathbb{R}$, where $\Omega \subseteq \mathbb{R}^n$ is a convex set. We assume sufficient smoothness (e.g., $f \in C^1$ or $f\in C^2$). To simplify we state results for $\Omega = \mathbb{R}^n$, but the extension to arbitrary convext sets is direct. 
+In the following we give two practical theorems to characterize the convexity of functions $f:\Omega \to \mathbb{R}$, where $\Omega \subseteq \mathbb{R}^n$ is a convex set. We assume sufficient smoothness (e.g., $f \in C^1$ or $f\in C^2$). To simplify we state results for $\Omega = \mathbb{R}^n$, but the extension to arbitrary convex sets is direct. 
 :::{prf:theorem} First order
 :label:thm:first_order_convexity
 Let $f:\mathbb{R}^n \rightarrow\mathbb{R}$ be differentiable. These statements are equivalent:
@@ -114,7 +114,7 @@ $$
 \st & x \in \mathbb{R}
 \end{array}
 $$
-admits no solution ($p^\star = 0$, but never attained). Yet it is convex optimization problem with $f_0$ strictly convex. 
+admits no solution ($p^\star = 0$, but never attained). Yet it is a convex optimization problem with $f_0$ strictly convex. 
 :::
 
 ## More comments on convex functions

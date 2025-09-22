@@ -58,18 +58,18 @@ Some possible situations in 1D.
 
 :::{card}
 :header: $f_0''(x^\star) = 0$ (maximum)
-![1D maxima](figures/1D_maxima.pdf)
+![1D maxima](figures/1D_maxima.png)
 
 :::
 
 :::{card}
 :header: $f''_0(x^\star) = 0$ (saddle point)
-![1D saddle](figures/1D_saddle.pdf)
+![1D saddle](figures/1D_saddle.png)
 :::
 
 :::{card}
 :header: $f''_0(x^\star) > 0$ (strict local optimum)
-![1D strict minima](figures/1D_strict_minima.pdf)
+![1D strict minima](figures/1D_strict_minima.png)
 
 :::
 ::::
@@ -142,7 +142,7 @@ Does the point $[1, 1]^\top$ satisfy the necessary conditions? the sufficient co
 When $f_0$ is convex there is a simple characterization of optimal points.
 
 :::{prf:theorem} Unconstrained convex problems
-Consider the unconstrained ptimization problem [](#optim-problem-unconstrained) and suppose that $f_0:\mathbb{R}^n\rightarrow \mathbb{R}$ is convex.  
+Consider the unconstrained optimization problem [](#optim-problem-unconstrained) and suppose that $f_0:\mathbb{R}^n\rightarrow \mathbb{R}$ is convex.  
 A point $x^\star$ is a local optimum (hence global by [](#thm:uniqueness_cvx)) if and only if $x^\star$ is a stationary point of $f_0$, i.e., such that $\nabla f_0(x^\star) = 0$.
 :::
 

@@ -41,13 +41,13 @@ $$\varepsilon(\beta_0, \beta_1) = \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)^2.$
 
 
 For a fixed data vector $y = [y_1, \ldots, y_n]^\top$ and known explanatory variables $x = [x_1, \ldots, x_n]^\top$, we obtain the following unconstrained optimization problem in terms of $\beta = [\beta_0, \beta_1]^\top$: 
-$$
+:::{math}
 :label:eq:linear_reg_example_intro_chap_LS
 \begin{array}{ll}
 \minimize& \sum_{i=1}^N (y_i - \beta_0 - \beta_1 x_i)^2\\
 \st & \beta \in \mathbb{R}^2
 \end{array}
-$$
+:::
 
 This is a **linear least squares** problem. This type of problem is found in many applications, such as engineering, econometrics, image processing, etc.  
 
@@ -68,6 +68,7 @@ beta0_hat = model.intercept_
 beta1_hat = model.coef_[0]
 
 print(f"Estimated coefficients: beta0 = {beta0_hat:.2f}, beta1 = {beta1_hat:.2f}")
+print(f"Ground truth coefficients: beta0 = {beta0:.2f}, beta1 = {beta1:.2f}")
 
 # Display the fitted line
 plt.scatter(x, y, label="measurement $y_i$")

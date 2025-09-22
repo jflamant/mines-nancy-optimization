@@ -13,6 +13,9 @@ It is a very important problem because:
 - It lays the foundation for many more sophisticated procedures.
 - Under some conditions, it admits an explicit (closed-form) solution.
 
+:::{note}
+Throughout the chapter, we will consider **unconstrained optimization** problems only. 
+:::
 
 :::{important} Key notions of the chapter
 - Several use-cases of (linear) least squares problems.

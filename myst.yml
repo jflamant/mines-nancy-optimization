@@ -34,6 +34,7 @@ project:
     - file: contents/chapter3/01-intro.md
       children:
         - file: contents/chapter3/02-first-example.md
+        - file: contents/chapter3/03-general-form-LS.md
   math: 
     '\diag': '\operatorname{diag}'
     '\st' : '\operatorname{subject\, to}'

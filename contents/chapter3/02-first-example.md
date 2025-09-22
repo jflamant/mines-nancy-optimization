@@ -44,7 +44,7 @@ For a fixed data vector $y = [y_1, \ldots, y_n]^\top$ and known explanatory vari
 :::{math}
 :label:eq:linear_reg_example_intro_chap_LS
 \begin{array}{ll}
-\minimize& \sum_{i=1}^N (y_i - \beta_0 - \beta_1 x_i)^2\\
+\minimize& \sum_{i=1}^n (y_i - \beta_0 - \beta_1 x_i)^2\\
 \st & \beta \in \mathbb{R}^2
 \end{array}
 :::

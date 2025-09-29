@@ -31,15 +31,20 @@ project:
         - file: contents/chapter2/04-convexity.md
         - file: contents/chapter2/05-optimality-conditions.md
         - file: contents/chapter2/06-optimality-conditions-constrained.md
-    # - file: contents/chapter3/01-intro.md
-    #   children:
-    #     - file: contents/chapter3/02-first-example.md
+    - file: contents/chapter3/01-intro.md
+      children:
+        - file: contents/chapter3/02-first-example.md
+        - file: contents/chapter3/03-general-form-LS.md
+        - file: contents/chapter3/04-unconstrained-QP.md
+        - file: contents/chapter3/05-back-to-LS.md
   math: 
     '\diag': '\operatorname{diag}'
     '\st' : '\operatorname{subject\, to}'
     '\minimize': '\operatorname{minimize}'
     '\maximize': '\operatorname{maximize}'
     '\dom': '\operatorname{dom}'
+    '\rank': '\operatorname{rank}'
+    '\im': '\operatorname{Im}'
 
   numbering:
     title: true

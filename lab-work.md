@@ -1,3 +1,6 @@
+---
+numbering: false
+---
 # Lab Work
 
 One of the goals of this course is to implement practical optimization algorithms in Python. 

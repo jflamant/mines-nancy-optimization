@@ -35,12 +35,16 @@ project:
       children:
         - file: contents/chapter3/02-first-example.md
         - file: contents/chapter3/03-general-form-LS.md
+        - file: contents/chapter3/04-unconstrained-QP.md
+        - file: contents/chapter3/05-back-to-LS.md
   math: 
     '\diag': '\operatorname{diag}'
     '\st' : '\operatorname{subject\, to}'
     '\minimize': '\operatorname{minimize}'
     '\maximize': '\operatorname{maximize}'
     '\dom': '\operatorname{dom}'
+    '\rank': '\operatorname{rank}'
+    '\im': '\operatorname{Im}'
 
   numbering:
     title: true

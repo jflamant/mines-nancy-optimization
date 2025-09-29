@@ -89,13 +89,17 @@ The approach very classical: hence it is implemented in many libraries, such as 
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 
+# construct polynomial regression matrix
 degree = 3
 poly = PolynomialFeatures(degree)
 X_poly = poly.fit_transform(ts.reshape(-1, 1))
 
-model = LinearRegression()
+# fit the data (solve the LS problem)
+model = LinearRegression(fit_intercept=False)
 model.fit(X_poly, y)
 y_pred = model.predict(X_poly)
+
+# display results
 plt.scatter(ts, y, label="data $y$")
 plt.plot(ts, f(ts), color="green", linestyle="--", label="ground truth")
 plt.plot(ts, y_pred, color="red", label=f"degree {degree} fit")
@@ -103,6 +107,9 @@ plt.xlabel("$t$")
 plt.ylabel("$y$")
 plt.legend()
 plt.show()
+
+# Print the estimated polynomial coefficients
+print("Estimated coefficients (in increasing powers of t):\n", model.coef_)
 ```
 
 In [TP1](), we will see what's under the hood of such tools and implement the solution from scratch. 
@@ -145,4 +152,190 @@ y = \begin{bmatrix}
 The vector ${\hat{x}} \in \argmin \Vert y - Ax\Vert_2^2$ is the least squares estimate of the polynomial coefficients in $y_m(t)$.
 ::::
 
-### Deconvolution
+### 2D image deconvolution
+Assume we observe a blurred image $Y \in \mathbb{R}^{H \times W}$, which is the result of convolving a true image $X \in \mathbb{R}^{n_H \times n_W}$ with a known kernel $K \in \mathbb{R}^{k_H \times k_W}$, plus noise $B$:
+$$
+Y = K * X + B
+$$
+where $*$ denotes 2D convolution. 
+
+**Example**
+```{code-cell} python
+from skimage import data
+from scipy.signal import convolve2d
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load cameraman image (grayscale) and decimitaed
+X = data.camera()[::3, ::3]
+# Define blur kernel
+K = np.array([[1, 2, 1],
+              [2, 4, 2],
+              [1, 2, 1]], dtype=float)
+K /= K.sum()
+
+# Convolve image with kernel
+Y = convolve2d(X, K, mode='same', boundary='symm')
+
+# Display original and blurred images side by side
+fig, axs = plt.subplots(1, 2, figsize=(8, 4))
+axs[0].imshow(X, cmap='gray')
+axs[0].set_title("Original image $X$")
+axs[0].axis('off')
+axs[1].imshow(Y, cmap='gray')
+axs[1].set_title("Blurred image $Y$")
+axs[1].axis('off')
+plt.tight_layout()
+plt.show()
+```
+
+We can rewrite the convolution as a linear operation (see also below) using the vectorization operator $\operatorname{vec}()$. 
+Define $y = \operatorname{vec}(Y) \in \mathbb{R}^{HW}$, $x = \operatorname{vec}(X) \in \mathbb{R}^{HW}$ and $b = \operatorname{vec}(B) \in \mathbb{R}^{HW}$, the above observation model is rewritten as
+$$
+y = Ax +b
+$$
+where $A$ is the matrix representing convolution with $K$. 
+The least squares problem is then:
+$$
+\min_{x\in \mathbb{R}^{HW}} \left\| y - Ax \right\|_2^2
+$$
+
+
+```{note}
+:class:dropdown
+### Expressing 2D convolution as a matrix–vector operation
+
+A 2D discrete convolution between an image $X \in \mathbb{R}^{H \times W}$ and a kernel $K \in \mathbb{R}^{k_H \times k_W}$ is defined as
+
+$$
+Y[i,j] = \sum_{m=0}^{k_H-1} \sum_{n=0}^{k_W-1} K[m,n] \; X[i+m-p, \, j+n-q],
+$$
+
+where $p = \lfloor k_H/2 \rfloor$, $q = \lfloor k_W/2 \rfloor$, and appropriate boundary conditions (e.g. zero-padding) are assumed.  
+
+**Matrix–vector Form**
+
+1. Flatten the image $X$ into a vector $x \in \mathbb{R}^{HW}$ using row-major ordering (or column-major ordering).  
+2. Construct the **convolution matrix** $A \in \mathbb{R}^{HW \times HW}$.  
+   - Each row of $A$ corresponds to one output pixel.  
+   - The kernel values are placed in the columns corresponding to the input pixel locations that contribute to that output.  
+
+   Formally, if we index pixels by a single index $r = iW + j$, then
+
+   $$
+   A_{r,\,s} = 
+   \begin{cases}
+   K[m,n], & \text{if input pixel } s \text{ corresponds to } (i+m-p, j+n-q) \\\\
+   0, & \text{otherwise}.
+   \end{cases}
+   $$
+
+   This means $A$ is a **block Toeplitz matrix with Toeplitz blocks (BTTB)**. For an image of height $H$ and width $W$:  
+
+   $$
+   A = 
+   \begin{bmatrix}
+   T_0 & T_{-1} & T_{-2} & \cdots & 0 \\\\
+   T_{1} & T_0 & T_{-1} & \cdots & 0 \\\\
+   T_{2} & T_{1} & T_{0} & \cdots & 0 \\\\
+   \vdots & \vdots & \vdots & \ddots & \vdots \\\\
+   0 & 0 & 0 & \cdots & T_0
+   \end{bmatrix},
+   $$
+
+   where each block $T_k$ is itself a Toeplitz matrix encoding horizontal shifts of the kernel.  
+
+3. The convolution becomes
+
+$$
+y = A x,
+$$
+
+where $y \in \mathbb{R}^{HW}$ is the flattened output image.
+
+```
+
+For the above example, $A$ is a huge structured matrix of size $HW \times HW$. 
+To simplify the presentation, assume $H = W = 10$ (the matrix $A$ is already $100 \times 100$!)
+
+```{code-cell} python
+:tags:[hide-input]
+import matplotlib.patches as patches
+
+def build_convolution_matrix(kernel, image_shape):
+    """
+    Build a convolution matrix A such that:
+    y_flat = A @ x_flat
+    where x_flat is the flattened image, and kernel is the convolution filter.
+    """
+    H, W = image_shape
+    kH, kW = kernel.shape
+    pad_h, pad_w = kH // 2, kW // 2
+
+    # Number of pixels
+    N = H * W
+    # Initialize the convolution matrix
+    A = np.zeros((N, N))
+
+    # Iterate over each pixel in the image
+    for i in range(H):
+        for j in range(W):
+            row = i * W + j # Row index in A
+
+            # Place kernel centered at (i,j)
+            for m in range(kH):
+                for n in range(kW):
+                    ii = i + m - pad_h
+                    jj = j + n - pad_w
+                    if 0 <= ii < H and 0 <= jj < W:
+                        col = ii * W + jj
+                        A[row, col] = kernel[m, n]
+    return A
+
+image_shape = 10, 10
+A = build_convolution_matrix(K, image_shape)
+
+
+fig, ax = plt.subplots(figsize=(8,8))
+im = ax.imshow(A, cmap='gray_r', interpolation='none')
+plt.title("Full Convolution Matrix $A$")
+plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+
+# Inset: show top-left 2 blocks along each direction
+block_size_x = image_shape[0]
+block_size_y = image_shape[1] 
+inset_size = block_size_x + block_size_y
+
+# Create inset axes
+ax_inset = ax.inset_axes([0.6, 0.6, 0.35, 0.35])
+ax_inset.imshow(A[:20, :20], cmap='gray_r', interpolation='none') 
+ax_inset.set_title('first two blocks of $A$')
+plt.show()
+``` 
+
+In practice, due to the large size of the matrix $A$, we do not use direct solutions based on pseudo-inverse calculations (see later on). In this case, the least squares problem is solved through the use of FFTs. 
+
+```{code-cell} python
+
+from numpy.fft import fft2, ifft2
+
+# compute least squares solution using FFT
+Y_fft = fft2(Y)
+K_fft = fft2(K, s=X.shape)
+eps = 1e-6*np.max(np.abs(K_fft))
+X_hat = np.real(ifft2(Y_fft/(1+K_fft+eps))) # small epsilon for stability
+
+# Display results
+fig, axs = plt.subplots(1, 3, figsize=(10, 3))
+axs[0].imshow(X, cmap='gray')
+axs[0].set_title("True image $X$")
+axs[1].imshow(Y, cmap='gray')
+axs[1].set_title("Blurred observation $Y$")
+axs[2].imshow(X_hat, cmap='gray')
+axs[2].set_title("LS estimate $\hat{X}$")
+for ax in axs: ax.axis('off')
+plt.tight_layout()
+plt.show()
+```
+
+This example demonstrates how 2D deconvolution can be formulated and solved as a linear least squares problem.

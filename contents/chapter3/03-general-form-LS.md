@@ -38,9 +38,9 @@ The over/under determination property play an important role regarding the uniqu
 
 ## Interpretation as an unconstrained quadratic program (QP)
 
-The objective function $f(x) = \Vert y - Ax\Vert_2^2$ can be rewritten as 
+The objective function $f_0(x) = \Vert y - Ax\Vert_2^2$ can be rewritten as 
 :::{math}
-f(x)&= (y - Ax)^\top ( y - Ax)\\
+f_0(x)&= (y - Ax)^\top ( y - Ax)\\
 &=y^\top y - x^\top A^\top y - y^\top Ax + x^\top A^\top A x
 :::
 such that the least-squares optimization problem can be equivalently reformulated as the unconstrained quadratic program 

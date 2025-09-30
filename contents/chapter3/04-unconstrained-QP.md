@@ -36,10 +36,10 @@ It is useful to keep in mind these identities. In doubt, check the [Matrix Cookb
 ## Preliminaries
 **Gradient and Hessian of the objective function of QP**
 
-For $f(x) = \frac{1}{2}x^\top Q x -p^\top x$, the gradient and Hessian are easily found as 
+For the objective $f_0(x) = \frac{1}{2}x^\top Q x -p^\top x$, the gradient and Hessian are easily found as 
 :::{math}
-\nabla f(x) &= \frac{1}{2}(Q+Q^\top)x -p = Qx-p\\
-\nabla^2 f(x) &= Q
+\nabla f_0(x) &= \frac{1}{2}(Q+Q^\top)x -p = Qx-p\\
+\nabla^2 f_0(x) &= Q
 :::
 
 **Diagonalization of the Hessian**
@@ -64,8 +64,8 @@ This shows that $f$ is unbounded below. Hence, the QP [](#prob:unconstrained_QP)
 
 ### Case 2: $\lambda_1 = \lambda_{\min}(Q) = 0$
 This case corresponds to $Q \succeq 0$ (positive semidefinite).
-- If $p \notin \operatorname{Im} Q$, the equation $\nabla f(x) = 0$ has no solution, so there is no stationary point. Since $f$ is convex (because $\nabla^2 f \succeq 0$), the QP [](#prob:unconstrained_QP) has no solution.
-- If $p \in \operatorname{Im} Q$, the equation $\nabla f(x) = 0$ admits infinitely many solutions of the form $x_0 + \mathbf{n}$, where $x_0$ is a particular solution and where $\mathbf{n} \in \ker Q$. They are all solutions of the QP [](#prob:unconstrained_QP).
+- If $p \notin \operatorname{Im} Q$, the equation $\nabla f_0(x) = 0$ has no solution, so there is no stationary point. Since $f$ is convex (because $\nabla^2 f \succeq 0$), the QP [](#prob:unconstrained_QP) has no solution.
+- If $p \in \operatorname{Im} Q$, the equation $\nabla f_0(x) = 0$ admits infinitely many solutions of the form $x_0 + \mathbf{n}$, where $x_0$ is a particular solution and where $\mathbf{n} \in \ker Q$. They are all solutions of the QP [](#prob:unconstrained_QP).
 
 ### Case 3: $\lambda_1 = \lambda_{\min}(Q) > 0$
 This case corresponds to $Q \succ 0$ (positive definite).

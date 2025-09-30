@@ -58,13 +58,13 @@ The properties of the eigenvalues of the Hessian permits to analyze the behavior
 ### Case 1: $\lambda_1 = \lambda_{\min}(Q) < 0$
 Let $u_1 \in \mathbb{R}^n$ be the eigenvector associated with $\lambda_1$. For any $z \in \mathbb{R}$,
 $$
-f(zu_1) = \frac{\lambda_1}{2} z^2 - z\, p^\top u_1 \xrightarrow[|z| \to +\infty]{} -\infty
+f_0(zu_1) = \frac{\lambda_1}{2} z^2 - z\, p^\top u_1 \xrightarrow[|z| \to +\infty]{} -\infty
 $$
 This shows that $f$ is unbounded below. Hence, the QP [](#prob:unconstrained_QP) has no solutions. 
 
 ### Case 2: $\lambda_1 = \lambda_{\min}(Q) = 0$
 This case corresponds to $Q \succeq 0$ (positive semidefinite).
-- If $p \notin \operatorname{Im} Q$, the equation $\nabla f_0(x) = 0$ has no solution, so there is no stationary point. Since $f$ is convex (because $\nabla^2 f \succeq 0$), the QP [](#prob:unconstrained_QP) has no solution.
+- If $p \notin \operatorname{Im} Q$, the equation $\nabla f_0(x) = 0$ has no solution, so there is no stationary point. Since $f$ is convex (because $\nabla^2 f_0 \succeq 0$), the QP [](#prob:unconstrained_QP) has no solution.
 - If $p \in \operatorname{Im} Q$, the equation $\nabla f_0(x) = 0$ admits infinitely many solutions of the form $x_0 + \mathbf{n}$, where $x_0$ is a particular solution and where $\mathbf{n} \in \ker Q$. They are all solutions of the QP [](#prob:unconstrained_QP).
 
 ### Case 3: $\lambda_1 = \lambda_{\min}(Q) > 0$

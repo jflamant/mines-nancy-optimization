@@ -59,6 +59,7 @@ project:
 
   numbering:
     title: true
+    headings: true
 
 site:
   template: book-theme

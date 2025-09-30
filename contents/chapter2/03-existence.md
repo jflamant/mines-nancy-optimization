@@ -67,7 +67,7 @@ $$ f_0(x) \text{ is coercive } \Leftrightarrow Q \succ 0 \text{ (positive defini
 
 :::{prf:proof}
 :nonumber:
-$\Leftarrow$. Suppose $Q \succ 0$. Equivalently, by [this proposition](prop_PSD_eigenvalues), its eigenvalues $\lambda_1, \ldots, \lambda_n$ are all strictly positive. Write $Q = U \Lambda U^\top$ where $U$ is orthogonal and $\Lambda = \diag(\lambda_1, \ldots, \lambda_n)$ where eigenvalues are ordered in ascending order.
+$\Leftarrow$. Suppose $Q \succ 0$. Equivalently, by [this proposition](#prop_PSD_eigenvalues), its eigenvalues $\lambda_1, \ldots, \lambda_n$ are all strictly positive. Write $Q = U \Lambda U^\top$ where $U$ is orthogonal and $\Lambda = \diag(\lambda_1, \ldots, \lambda_n)$ where eigenvalues are ordered in ascending order.
 Then, 
 $$x^\top Q x = x^\top U \Lambda \underbrace{U^\top x}_{=w} = \sum_{i=1}^n\lambda_i w_i^2 &\geq \lambda_1 \sum_{i=1}^n w_i^2 \\
 &= \lambda_1 \Vert w\Vert^2_2 = \lambda_1 \Vert U^\top x\Vert_2^2 = \lambda_1 \Vert x \Vert_2^2$$

@@ -65,8 +65,8 @@ site:
   nav:
     - title: Lab Work
       url: /lab-work
-    - title: Arche
-      url: https://arche.univ-lorraine.fr/course/view.php?id=74098
+    # - title: Arche
+    #   url: https://arche.univ-lorraine.fr/course/view.php?id=74098
   options:
     logo: site_logo.png
 

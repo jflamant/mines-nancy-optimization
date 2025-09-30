@@ -92,6 +92,7 @@ We write $A \succeq 0$ when it is PSD, and $A \succ 0$ when it is PD.
 
 
 :::{prf:proposition} Characterization of PSD / PD matrices
+:label:prop_PSD_eigenvalues
 - $A \succeq 0$ if and only if all its eigenvalues are non-negative.
 - $A \succ 0$ if and only if all its eigenvalues are strictly positive.
 :::

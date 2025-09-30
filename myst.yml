@@ -42,9 +42,9 @@ project:
         - file: contents/chapter3/03-general-form-LS.md
         - file: contents/chapter3/04-unconstrained-QP.md
         - file: contents/chapter3/05-back-to-LS.md
-    - file: lab-work.md
+    - file: labs/lab-work.md
       children:
-        - file: LW1.ipynb
+        - file: labs/LW1.ipynb
           hidden: false
 
       

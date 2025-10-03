@@ -1,8 +1,7 @@
 name: build
-
 on:
   push:
-    branches: [main]
+  pull_request:
 
 env:
   BASE_URL: /${{ github.event.repository.name }}
@@ -55,12 +54,3 @@ jobs:
         run: |
           source .venv/bin/activate
           uv run jupyter-book build --html --execute
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './_build/html'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4

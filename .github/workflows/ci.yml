@@ -1,4 +1,4 @@
-name: build
+name: ci
 on:
   push:
   pull_request:
@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  run:
+  check_html_build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

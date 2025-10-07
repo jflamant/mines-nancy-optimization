@@ -48,9 +48,9 @@ project:
         - file: contents/chapter4/03-general-principles-descent-methods.md
         - file: contents/chapter4/04-gradient-descent.md
         - file: contents/chapter4/05-newton-method.md
-        - file: contents/chapter4/06-quasi-newton-method.md
-        - file: contents/chapter4/07-nonlinear-ls.md
-        - file: contents/chapter4/08-cv-vs-computation.md
+        # - file: contents/chapter4/06-quasi-newton-method.md
+        # - file: contents/chapter4/07-nonlinear-ls.md
+        # - file: contents/chapter4/08-cv-vs-computation.md
     - file: labs/lab-work.md
       children:
         - file: labs/LW1.ipynb

@@ -404,5 +404,4 @@ In this example backtracking outperforms the optimal step-size strategy; it is l
 - Start with a trial step (often 1), shrink until a sufficient decrease condition is met.
 - Adaptive, robust, and avoids overly aggressive jumps.
 - Usually the practical sweet spot: more reliable than fixed steps, cheaper than exact line search.
-
 :::

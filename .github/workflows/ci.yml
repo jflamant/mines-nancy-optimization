@@ -1,8 +1,7 @@
-name: build
-
+name: ci
 on:
   push:
-    branches: [main]
+  pull_request:
 
 env:
   BASE_URL: /${{ github.event.repository.name }}
@@ -17,10 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  check_html_build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -55,12 +51,3 @@ jobs:
         run: |
           source .venv/bin/activate
           uv run jupyter-book build --html --execute
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './_build/html'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4

@@ -3,7 +3,7 @@ version: 1
 project:
   id: 72b1a196-1109-4b5c-8eac-79921a6ed938
   title: Mines Nancy - Optimization course
-  license: 
+  license:
     code: MIT
     content: CC-BY-4.0
   open_access: true
@@ -42,13 +42,22 @@ project:
         - file: contents/chapter3/03-general-form-LS.md
         - file: contents/chapter3/04-unconstrained-QP.md
         - file: contents/chapter3/05-back-to-LS.md
+    - file: contents/chapter4/01-intro.md
+      children:
+        - file: contents/chapter4/02-gradient-free-optimization.md
+        - file: contents/chapter4/03-general-principles-descent-methods.md
+        - file: contents/chapter4/04-gradient-descent.md
+        - file: contents/chapter4/05-newton-method.md
+        # - file: contents/chapter4/06-quasi-newton-method.md
+        # - file: contents/chapter4/07-nonlinear-ls.md
+        # - file: contents/chapter4/08-cv-vs-computation.md
     - file: labs/lab-work.md
       children:
         - file: labs/LW1.ipynb
           hidden: false
 
-      
-  math: 
+
+  math:
     '\diag': '\operatorname{diag}'
     '\st' : '\operatorname{subject\, to}'
     '\minimize': '\operatorname{minimize}'

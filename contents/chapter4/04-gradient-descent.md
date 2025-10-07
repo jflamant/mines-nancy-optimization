@@ -52,14 +52,14 @@ $$ \lim_{k\to \infty} \Vert \nabla f_0(x^{(k)})\Vert = 0\text{ and } f_0(x^{(k+1
 i.e., gradient descent generates a sequence of non-increasing objective values which identifies a stationary point of the objective.
 :::
 
-### Optimal step-size
+### Optimal step-size (exact line search)
 
 :::{prf:algorithm} Gradient descent with optimal step-size
 Given initial point $x^{(0)}$, iterate until convergence:
 $$x^{(k+1)} = x^{(k)} - \alpha_k \nabla f_0(x^{(k)})$$
 where $\alpha_k \in \argmin_{\alpha \geq 0} f_0( x^{(k)} - \alpha \nabla f_0(x^{(k)}))$.
 :::
-This strategy guarantees the **best** decrease of the objective for the current descent direction $\nabla f_0(x^{(k)})$. However, a major drawback is that calculating the optimal step size can be as difficult as the original problem and/or very computationally expensive.
+This strategy guarantees the **best** decrease of the objective for the **current descent direction** $\nabla f_0(x^{(k)})$. However, a major drawback is that calculating the optimal step size can be as difficult as the original problem and/or very computationally expensive.
 
 
 ::::{prf:example} adapted from @boyd2004convex [§9.3.2]
@@ -223,9 +223,11 @@ plt.show()
 We will now compare the three step-sizes: fixed, optimal, and with backtracking.
 For simplicity, we only implemented a fixed number of iterations; recall that in practice you need a good stopping criterion!
 
-
+In addition, we will a backtracking strategy in which the value of $\alpha$ is not reset to $\alpha_0$ at each iteration; this is used in some context to save some computation time. You can see the effect by uncommenting this line in the code.
 ```{code-cell} python
 :tags:[hide-input]
+from scipy.optimize import minimize_scalar, minimize
+
 def dfdx(x1, x2):
     dx1 = np.exp(x1 + 3*x2 - 0.1) + np.exp(x1 - 3*x2 - 0.1) - np.exp(-x1 - 0.1)
     dx2 = 3 * np.exp(x1 + 3*x2 - 0.1) - 3 * np.exp(x1 - 3*x2 - 0.1)
@@ -233,11 +235,11 @@ def dfdx(x1, x2):
 
 
 # Initial point
-x0 = np.array([-1.5, 0.4])
-max_iter = 20
+x0 = np.array([-2, 0.5])
+max_iter = 25
 
 # Fixed step-size
-alpha_fixed = 0.05
+alpha_fixed = 0.1
 xs_fixed = [x0.copy()]
 for _ in range(max_iter):
     grad = dfdx(*xs_fixed[-1])
@@ -250,57 +252,157 @@ for _ in range(max_iter):
     # Line search: minimize f(x - alpha * grad) over alpha >= 0
     def phi(alpha):
         return f(*(xs_opt[-1] - alpha * grad))
-    from scipy.optimize import minimize_scalar
     res = minimize_scalar(phi)
     alpha_opt = res.x
     xs_opt.append(xs_opt[-1] - alpha_opt * grad)
 
 # Backtracking line search
-s = 0.2
-eta = 0.6
-alpha0 = 1.0
+s = 0.3
+eta = 0.9
+alpha0 = .2
 xs_bt = [x0.copy()]
-for _ in range(max_iter):
+alpha = alpha0
+for n in range(max_iter):
     grad = dfdx(*xs_bt[-1])
-    alpha = alpha0
+    #alpha = alpha0 # uncomment if you want to reset alpha = alpha0 at each iteration
     while f(*(xs_bt[-1] - alpha * grad)) > f(*xs_bt[-1]) - s * alpha * np.linalg.norm(grad)**2:
         alpha *= eta
+        print(f'backtracking kicks in at iter {n}: current alpha = {alpha}')
     xs_bt.append(xs_bt[-1] - alpha * grad)
 
 # Plot trajectories
 plt.figure(figsize=(8, 6))
 cp = plt.contourf(X1, X2, Z, levels=30, cmap='viridis')
+plt.contour(X1, X2, Z, levels=30)
 plt.colorbar(cp)
 plt.xlabel("$x_1$")
 plt.ylabel("$x_2$")
 plt.title("Gradient Descent Trajectories")
 
-def plot_path(xs, label, color):
+def plot_path(xs, label):
     xs = np.array(xs)
-    plt.plot(xs[:,0], xs[:,1], marker='o', label=label, color=color)
+    plt.plot(xs[:,0], xs[:,1], marker='o', label=label)
 
-plot_path(xs_fixed, "Fixed step-size", "red")
-plot_path(xs_opt, "Optimal step-size", "green")
-plot_path(xs_bt, "Backtracking", "blue")
+plot_path(xs_fixed, r"Fixed step-size $\alpha$" + f"$= {alpha_fixed}$")
+plot_path(xs_opt, "Optimal step-size")
+plot_path(xs_bt, f"Backtracking $(s, \eta) = {s, eta}$")
 plt.legend()
 plt.show()
 
 # compute optimal value
-# Compute optimal value
-from scipy.optimize import minimize
-
 res = minimize(lambda x: f(x[0], x[1]), x0)
-f_opt = res.fun
-print(f"Optimal value: {f_opt:.4f}")
+pstar = res.fun
+
 # Plot objective values for each method
 plt.figure(figsize=(8, 6))
-plt.semilogy([f(*x) - f_opt for x in xs_fixed], label="Fixed step-size", color="red", marker='o')
-plt.semilogy([f(*x)- f_opt for x in xs_opt], label="Optimal step-size", color="green", marker='o')
-plt.semilogy([f(*x)- f_opt for x in xs_bt], label="Backtracking", color="blue", marker='o')
+plt.semilogy([f(*x) - pstar for x in xs_fixed], label=r"Fixed step-size $\alpha$" + f"$= {alpha_fixed}$", marker='o')
+plt.semilogy([f(*x)- pstar for x in xs_opt], label="Optimal step-size", marker='o')
+plt.semilogy([f(*x)- pstar for x in xs_bt], label=f"Backtracking $(s, \eta) = {s, eta}$", marker='o')
 plt.xlabel("Iteration")
-plt.ylabel("$f_0(x)$")
-plt.title("Objective Value per Iteration")
+plt.ylabel("$f_0(x) - p^\star$")
+plt.title("suboptimality value vs iteration")
 plt.legend()
 plt.grid(True)
 plt.show()
 ```
+This experiment shows that among the three methods, the simpler (fixed-step size) is also the slowest.
+Both backtracking and optimal step size converge faster, with an advantage to the optimal step-size strategy for this configuration. However, this is not always the case: there are situations in which backtracking can outperform (sometimes in a striking way) the optimal step-size strategy.
+
+Here is an example, starting from a different point and with updated parameters. (note we reset $\alpha = \alpha_0$ in each iteration).
+```{code-cell} python
+:tags:[hide-input]
+
+# Initial point
+x0 = np.array([.5, .5])
+max_iter = 25
+
+# Fixed step-size
+alpha_fixed = 0.03
+xs_fixed = [x0.copy()]
+for _ in range(max_iter):
+    grad = dfdx(*xs_fixed[-1])
+    xs_fixed.append(xs_fixed[-1] - alpha_fixed * grad)
+
+# Optimal step-size (exact line search)
+xs_opt = [x0.copy()]
+for _ in range(max_iter):
+    grad = dfdx(*xs_opt[-1])
+    # Line search: minimize f(x - alpha * grad) over alpha >= 0
+    def phi(alpha):
+        return f(*(xs_opt[-1] - alpha * grad))
+    res = minimize_scalar(phi)
+    alpha_opt = res.x
+    xs_opt.append(xs_opt[-1] - alpha_opt * grad)
+
+# Backtracking line search
+s = 0.1
+eta = 0.3
+alpha0 = 1
+xs_bt = [x0.copy()]
+alpha = alpha0
+for n in range(max_iter):
+    grad = dfdx(*xs_bt[-1])
+    alpha = alpha0 # uncomment if you want to reset alpha = alpha0 at each iteration
+    while f(*(xs_bt[-1] - alpha * grad)) > f(*xs_bt[-1]) - s * alpha * np.linalg.norm(grad)**2:
+        alpha *= eta
+        print(f'backtracking kicks in at iter {n}: current alpha = {alpha}')
+    xs_bt.append(xs_bt[-1] - alpha * grad)
+
+# Plot trajectories
+plt.figure(figsize=(8, 6))
+cp = plt.contourf(X1, X2, Z, levels=30, cmap='viridis')
+plt.contour(X1, X2, Z, levels=30)
+plt.colorbar(cp)
+plt.xlabel("$x_1$")
+plt.ylabel("$x_2$")
+plt.title("Gradient Descent Trajectories")
+
+def plot_path(xs, label):
+    xs = np.array(xs)
+    plt.plot(xs[:,0], xs[:,1], marker='o', label=label)
+
+plot_path(xs_fixed, r"Fixed step-size $\alpha$" + f"$= {alpha_fixed}$")
+plot_path(xs_opt, "Optimal step-size")
+plot_path(xs_bt, f"Backtracking $(s, \eta) = {s, eta}$")
+plt.legend()
+plt.show()
+
+# compute optimal value
+res = minimize(lambda x: f(x[0], x[1]), x0)
+pstar = res.fun
+
+# Plot objective values for each method
+plt.figure(figsize=(8, 6))
+plt.semilogy([f(*x) - pstar for x in xs_fixed], label=r"Fixed step-size $\alpha$" + f"$= {alpha_fixed}$", marker='o')
+plt.semilogy([f(*x)- pstar for x in xs_opt], label="Optimal step-size", marker='o')
+plt.semilogy([f(*x)- pstar for x in xs_bt], label=f"Backtracking $(s, \eta) = {s, eta}$", marker='o')
+plt.xlabel("Iteration")
+plt.ylabel("$f_0(x) - p^\star$")
+plt.title("suboptimality value vs iteration")
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+In this example backtracking outperforms the optimal step-size strategy; it is less prone to zig-zags, and thus converges faster. Both methods converge faster than the fixed step-size strategy.
+
+
+## Takeaway: step-size selection strategies
+:::{tip} How-to choose a given strategy?
+
+**1. Fixed step size**
+- Simple and cheap: pick one learning rate and keep it constant.
+- Works well if you know the problem’s curvature (or can tune carefully).
+- Bad choice can mean divergence or painfully slow convergence.
+
+**2. Exact line search**
+- At each iteration, pick the best step along the gradient direction.
+- Guarantees the largest decrease *along that line*, but may be very expensive to compute.
+- Works nicely for quadratics, but may zig-zag badly in curved valleys.
+
+**3. Backtracking line search**
+- Start with a trial step (often 1), shrink until a sufficient decrease condition is met.
+- Adaptive, robust, and avoids overly aggressive jumps.
+- Usually the practical sweet spot: more reliable than fixed steps, cheaper than exact line search.
+
+:::

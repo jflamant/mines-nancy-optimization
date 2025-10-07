@@ -216,4 +216,4 @@ plt.show()
 ```
 
 On this example, the difference between gradient descent and Newton's method is illuminating. While gradient descent requires many small steps to navigate the curved valley of the Rosenbrock function, Newton's method quickly adjusts its trajectory and reaches the optimum in far fewer iterations, thanks to its use of second-order information.
-This illustrates the practical advantage of Newton's method when the Hessian is available and well-conditioned.
+This illustrates the practical advantage of Newton's method when the Hessian is available and well defined.

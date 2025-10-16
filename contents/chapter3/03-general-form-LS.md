@@ -5,7 +5,7 @@ kernelspec:
 
 # General form of (linear) least squares problems
 
-The main hypothesis is that there exists a **linear** relationship between data $y \in \mathbb{R}^m$ and variables $x \in \mathbb{R}^n$. 
+The main hypothesis is that there exists a **linear** relationship between data $y \in \mathbb{R}^m$ and variables $x \in \mathbb{R}^n$.
 
 ```{figure} ./figures/ls-general-form.svg
 ---
@@ -21,7 +21,8 @@ illustration of the linear model $y = Ax + b$ in the overdetermined case ($m \ge
 - The vector $b \in \mathbb{R}^m$ expresses errors (model, noise, etc.).
 
 ::::{prf:definition} Linear least squares
-Given data $y \in \mathbb{R}^m$ and model matrix $A \in \mathbb{R}^{m\times n}$, the linear least squares problem is the optimization problem 
+:label:def:linear_LS
+Given data $y \in \mathbb{R}^m$ and model matrix $A \in \mathbb{R}^{m\times n}$, the linear least squares problem is the optimization problem
 :::{math}
 :label:prob:linear_LS
 \begin{array}{ll}
@@ -34,23 +35,23 @@ For simplicity, we assume that observations $y_1, \ldots y_n$ are linearly indep
 - overdetermined when $m \geq n$ (more observations than unknowns)
 - underdetermined when $m \leq n$ (strictly less observations than unknowns)
 
-The over/under determination property play an important role regarding the uniqueness of solutions to the least squares problem, as we will see later on. 
+The over/under determination property play an important role regarding the uniqueness of solutions to the least squares problem, as we will see later on.
 
 ## Interpretation as an unconstrained quadratic program (QP)
 
-The objective function $f_0(x) = \Vert y - Ax\Vert_2^2$ can be rewritten as 
+The objective function $f_0(x) = \Vert y - Ax\Vert_2^2$ can be rewritten as
 :::{math}
 f_0(x)&= (y - Ax)^\top ( y - Ax)\\
 &=y^\top y - x^\top A^\top y - y^\top Ax + x^\top A^\top A x
 :::
-such that the least-squares optimization problem can be equivalently reformulated as the unconstrained quadratic program 
+such that the least-squares optimization problem can be equivalently reformulated as the unconstrained quadratic program
 :::{math}
 \begin{array}{ll}
 \minimize&  \frac{1}{2}x^\top Q x - p^\top x\\
 \st & x \in \mathbb{R}^n
 \end{array}
 :::
-where $Q:= A^\top A \in \mathbb{R}^{n\times n}$ and $p := A^\top y \in \mathbb{R}^n$. 
+where $Q:= A^\top A \in \mathbb{R}^{n\times n}$ and $p := A^\top y \in \mathbb{R}^n$.
 
 :::{important}
 the interpretation of unconstrained (linear) least squares problems as quadratic programs will be useful later on to study the existence and uniqueness of solutions of least square problems.
@@ -82,7 +83,7 @@ plt.legend()
 plt.show()
 ```
 
-The trend clearly looks polynomial. If we assume the degree $d$ of the polynomial is known (here $d=3$), we can write a **linear** model to *fit* the data $y$. 
+The trend clearly looks polynomial. If we assume the degree $d$ of the polynomial is known (here $d=3$), we can write a **linear** model to *fit* the data $y$.
 The approach very classical: hence it is implemented in many libraries, such as [scikit-learn](https://scikit-learn.org/stable/) (see [PolynomialFeatures](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html) and [LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html)).
 
 ```{code-cell} python
@@ -112,7 +113,7 @@ plt.show()
 print("Estimated coefficients (in increasing powers of t):\n", model.coef_)
 ```
 
-In [TP1](), we will see what's under the hood of such tools and implement the solution from scratch. 
+In [TP1](), we will see what's under the hood of such tools and implement the solution from scratch.
 
 ::::{note} How to write the polynomial model as a linear model?
 **Polynomial model**
@@ -157,7 +158,7 @@ Assume we observe a blurred image $Y \in \mathbb{R}^{H \times W}$, which is the 
 $$
 Y = K * X + B
 $$
-where $*$ denotes 2D convolution. 
+where $*$ denotes 2D convolution.
 
 **Example**
 ```{code-cell} python
@@ -189,12 +190,12 @@ plt.tight_layout()
 plt.show()
 ```
 
-We can rewrite the convolution as a linear operation (see also below) using the vectorization operator $\operatorname{vec}()$. 
+We can rewrite the convolution as a linear operation (see also below) using the vectorization operator $\operatorname{vec}()$.
 Define $y = \operatorname{vec}(Y) \in \mathbb{R}^{HW}$, $x = \operatorname{vec}(X) \in \mathbb{R}^{HW}$ and $b = \operatorname{vec}(B) \in \mathbb{R}^{HW}$, the above observation model is rewritten as
 $$
 y = Ax +b
 $$
-where $A$ is the matrix representing convolution with $K$. 
+where $A$ is the matrix representing convolution with $K$.
 The least squares problem is then:
 $$
 \min_{x\in \mathbb{R}^{HW}} \left\| y - Ax \right\|_2^2
@@ -211,29 +212,29 @@ $$
 Y[i,j] = \sum_{m=0}^{k_H-1} \sum_{n=0}^{k_W-1} K[m,n] \; X[i+m-p, \, j+n-q],
 $$
 
-where $p = \lfloor k_H/2 \rfloor$, $q = \lfloor k_W/2 \rfloor$, and appropriate boundary conditions (e.g. zero-padding) are assumed.  
+where $p = \lfloor k_H/2 \rfloor$, $q = \lfloor k_W/2 \rfloor$, and appropriate boundary conditions (e.g. zero-padding) are assumed.
 
 **Matrix–vector Form**
 
-1. Flatten the image $X$ into a vector $x \in \mathbb{R}^{HW}$ using row-major ordering (or column-major ordering).  
-2. Construct the **convolution matrix** $A \in \mathbb{R}^{HW \times HW}$.  
-   - Each row of $A$ corresponds to one output pixel.  
-   - The kernel values are placed in the columns corresponding to the input pixel locations that contribute to that output.  
+1. Flatten the image $X$ into a vector $x \in \mathbb{R}^{HW}$ using row-major ordering (or column-major ordering).
+2. Construct the **convolution matrix** $A \in \mathbb{R}^{HW \times HW}$.
+   - Each row of $A$ corresponds to one output pixel.
+   - The kernel values are placed in the columns corresponding to the input pixel locations that contribute to that output.
 
    Formally, if we index pixels by a single index $r = iW + j$, then
 
    $$
-   A_{r,\,s} = 
+   A_{r,\,s} =
    \begin{cases}
    K[m,n], & \text{if input pixel } s \text{ corresponds to } (i+m-p, j+n-q) \\\\
    0, & \text{otherwise}.
    \end{cases}
    $$
 
-   This means $A$ is a **block Toeplitz matrix with Toeplitz blocks (BTTB)**. For an image of height $H$ and width $W$:  
+   This means $A$ is a **block Toeplitz matrix with Toeplitz blocks (BTTB)**. For an image of height $H$ and width $W$:
 
    $$
-   A = 
+   A =
    \begin{bmatrix}
    T_0 & T_{-1} & T_{-2} & \cdots & 0 \\\\
    T_{1} & T_0 & T_{-1} & \cdots & 0 \\\\
@@ -243,7 +244,7 @@ where $p = \lfloor k_H/2 \rfloor$, $q = \lfloor k_W/2 \rfloor$, and appropriate 
    \end{bmatrix},
    $$
 
-   where each block $T_k$ is itself a Toeplitz matrix encoding horizontal shifts of the kernel.  
+   where each block $T_k$ is itself a Toeplitz matrix encoding horizontal shifts of the kernel.
 
 3. The convolution becomes
 
@@ -255,7 +256,7 @@ where $y \in \mathbb{R}^{HW}$ is the flattened output image.
 
 ```
 
-For the above example, $A$ is a huge structured matrix of size $HW \times HW$. 
+For the above example, $A$ is a huge structured matrix of size $HW \times HW$.
 To simplify the presentation, assume $H = W = 10$ (the matrix $A$ is already $100 \times 100$!)
 
 ```{code-cell} python
@@ -303,17 +304,17 @@ plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
 
 # Inset: show top-left 2 blocks along each direction
 block_size_x = image_shape[0]
-block_size_y = image_shape[1] 
+block_size_y = image_shape[1]
 inset_size = block_size_x + block_size_y
 
 # Create inset axes
 ax_inset = ax.inset_axes([0.6, 0.6, 0.35, 0.35])
-ax_inset.imshow(A[:20, :20], cmap='gray_r', interpolation='none') 
+ax_inset.imshow(A[:20, :20], cmap='gray_r', interpolation='none')
 ax_inset.set_title('first two blocks of $A$')
 plt.show()
-``` 
+```
 
-In practice, due to the large size of the matrix $A$, we do not use direct solutions based on pseudo-inverse calculations (see later on). In this case, the least squares problem is solved through the use of FFTs. 
+In practice, due to the large size of the matrix $A$, we do not use direct solutions based on pseudo-inverse calculations (see later on). In this case, the least squares problem is solved through the use of FFTs.
 
 ```{code-cell} python
 

@@ -50,9 +50,9 @@ $$ J(x) = \begin{bmatrix}
 Using the Jacobian matrix allows for a simple expression of the gradient and Hessian of $f_0(x) = \frac{1}{2}\Vert R(x)\Vert^2_2$.
 Let us compute the gradient and Hessian of $f_0$:
 $$
-\nabla f_0(x) &= \sum_{j=1}^m r_j(x)\nabla r_j(x) = J(x)^\top R(x)\\
+\nabla f_0(x) & = \sum_{j=1}^m r_j(x)\nabla r_j(x) = J(x)^\top R(x)\\
 \nabla^2 f_0(x) & = \sum_{j=1}^m \nabla r_j(x)\nabla r_j(x)^\top + \sum_{j=1}^m r_j(x)\nabla^2 r_j(x) \\
-&=  J(x)^\top J(x) + \sum_{j=1}^m r_j(x)\nabla^2 r_j(x)
+& =  J(x)^\top J(x) + \sum_{j=1}^m r_j(x)\nabla^2 r_j(x)
 $$
 
 **Why are these expression interesting?** Because, in many applications:

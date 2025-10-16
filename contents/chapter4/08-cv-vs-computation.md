@@ -75,7 +75,7 @@ Note these are complexity obtained by standard, simple implementations; some com
 The total computational cost of an algorithm depends on the sequence and combination of such operations. In practice, other factors like memory usage and data movement can also significantly affect performance.
 
 ## Properties of some classical algorithms
-More to come in the dedicated chapter on convergence properties. These result apply to unconstrained problems (for constrained problems, some of these results holds under certain conditions).
+More to come in the dedicated chapter on convergence properties. These results apply to unconstrained problems (for constrained problems, some of these results hold under certain conditions).
 
 - **Gradient method with constant step size**
 $$x^{(k+1)} = x^{(k)} - \alpha \nabla f_0(x^{(k)})$$

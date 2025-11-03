@@ -55,6 +55,8 @@ project:
       children:
         - file: labs/LW1.ipynb
           hidden: false
+        - file: labs/LW2.ipynb
+          hidden: false
 
 
   math:

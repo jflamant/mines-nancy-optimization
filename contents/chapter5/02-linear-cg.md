@@ -233,6 +233,7 @@ The following example shows how CG convergence speed can be affected by the dist
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.sparse.linalg import cg
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 # Function to run CG on a system with matrix A and show convergence rates
 def run_cg(A, b):
@@ -249,30 +250,41 @@ def run_cg(A, b):
 
 # Problem setup
 n = 100
-np.random.seed(0)
+np.random.seed(10)
 b = np.random.randn(n)
 
-# Case 1: Well-clustered eigenvalues (matrix with close eigenvalues)
-eigenvalues_clustered = 1+0.1*np.random.rand(n)
+# Case 1: Well-clustered eigenvalues
+eigenvalues_clustered = 10 + 10 * np.random.rand(n)
 A_clustered = np.diag(eigenvalues_clustered)
 residuals_clustered = run_cg(A_clustered, b)
 
-# Case 2: Spread-out eigenvalues (matrix with widely varying eigenvalues)
-eigenvalues_spread = 100*np.random.rand(n)
+# Case 2: Spread-out eigenvalues
+eigenvalues_spread = 100 * np.random.rand(n)
 A_spread = np.diag(eigenvalues_spread)
 residuals_spread = run_cg(A_spread, b)
 
 # Plot convergence rates
-plt.figure(figsize=(10, 6))
-plt.semilogy(residuals_clustered, label="Clustered Eigenvalues")
-plt.semilogy(residuals_spread, label="Spread Eigenvalues")
-plt.xlabel("Iteration")
-plt.ylabel("Residual Norm (log scale)")
-plt.title("Convergence of Conjugate Gradient for Different Eigenvalue Distributions")
-plt.legend()
-plt.grid(True)
-plt.tight_layout()
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.semilogy(residuals_clustered, label="Clustered Eigenvalues")
+ax.semilogy(residuals_spread, label="Spread Eigenvalues")
+ax.set_xlabel("Iteration")
+ax.set_ylabel("Residual Norm (log scale)")
+ax.set_title("Convergence of Conjugate Gradient for Different Eigenvalue Distributions")
+ax.grid(True)
+ax.legend()
+
+# Add inset for eigenvalue distributions
+axins = inset_axes(ax, width="35%", height="35%", loc='upper right')
+axins.hist(eigenvalues_clustered, bins=20, alpha=0.6, label="Clustered")
+axins.hist(eigenvalues_spread, bins=20, alpha=0.6, label="Spread")
+#axins.set_title("Eigenvalue Distribution", fontsize=10)
+axins.set_xlabel("Eigenvalue", fontsize=8)
+axins.set_ylabel("Count", fontsize=8)
+axins.tick_params(axis='both', which='major', labelsize=8)
+axins.legend(fontsize=8)
+
 plt.show()
+
 ```
 
 ## Summary

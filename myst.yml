@@ -51,6 +51,10 @@ project:
         - file: contents/chapter4/06-quasi-newton-method.md
         - file: contents/chapter4/07-nonlinear-ls.md
         - file: contents/chapter4/08-cv-vs-computation.md
+    - file: contents/chapter5/01-intro.md
+      children:
+        - file: contents/chapter5/02-linear-cg.md
+        - file: contents/chapter5/03-nonlinear-cg.md
     - file: labs/lab-work.md
       children:
         - file: labs/LW1.ipynb

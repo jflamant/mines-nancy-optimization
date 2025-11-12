@@ -85,4 +85,4 @@ site:
   options:
     logo: site_logo.png
 
-  #   favicon: favicon.ico
+  favicon: favicon.ico

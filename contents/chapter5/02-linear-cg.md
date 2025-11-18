@@ -90,11 +90,11 @@ where the $\lbrace d_k\rbrace$ are conjugate directions converges to the solutio
 :class:dropdown
 Let us consider $n$ conjugate directions. This implies that the directions are linearly independent and thus they must span $\mathbb{R}^n$. In particular, there exist $\sigma_0, \ldots, \sigma_{N-1} \in \mathbb{R}$ such that
 $$
-  x^\star - x^{(0)} = \sum_{i=0}^{N-1} \sigma_i d_i.
+  x^\star - x^{(0)} = \sum_{i=0}^{n-1} \sigma_i d_i.
 $$
  By using the conjugacy property, we can obtain the value of $\sigma_k$ as
   \begin{align*}
-    d_k^\top Q\left[x^\star - x^{(0)}\right] &=  d_k^\top Q\left[\sum_{i=0}^{N-1} \sigma_i d_i\right]= \sigma_k d_k^\top Qd_k
+    d_k^\top Q\left[x^\star - x^{(0)}\right] &=  d_k^\top Q\left[\sum_{i=0}^{n-1} \sigma_i d_i\right]= \sigma_k d_k^\top Qd_k
   \end{align*}
   hence $\sigma_k = \frac{ d_k^\top Q\left[x^\star - x^{(0)}\right]}{d_k^\top Qd_k}$. Next we prove that $\alpha_k = \sigma_k$.
 

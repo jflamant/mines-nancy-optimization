@@ -55,6 +55,12 @@ project:
       children:
         - file: contents/chapter5/02-linear-cg.md
         - file: contents/chapter5/03-nonlinear-cg.md
+    - file: contents/chapter6/01-intro.md
+      children:
+        - file: contents/chapter6/02-mathematical-toolbox.md
+        - file: contents/chapter6/03-cv-gradient-descent.md
+        - file: contents/chapter6/04-cv-newton-method.md
+        - file: contents/chapter6/05-tradeoffs.md
     - file: labs/lab-work.md
       children:
         - file: labs/LW1.ipynb

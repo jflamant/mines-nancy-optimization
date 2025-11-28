@@ -30,6 +30,7 @@ Let $f:\mathbb{R}^n \rightarrow\mathbb{R}$ be twice differentiable. We have equi
 Another important notion is that of **smoothness** of a function $f$, which relates to Lipschitz continuity properties of its gradient $\nabla f$.
 
 :::{prf:definition} Smooth function
+:label:def:lsmooth
 A continuously differentiable function $f: \mathbb{R}^n \to \mathbb{R}$ is said to be $L$-smooth if there exists $L > 0$ such that
 $$
 \Vert \nabla f(x) - \nabla f(y)\Vert_2 \leq L \Vert x - y\Vert_2 \quad \text{ for all } x, y \in \mathbb{R}^n,

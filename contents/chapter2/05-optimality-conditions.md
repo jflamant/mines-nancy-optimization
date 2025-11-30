@@ -19,7 +19,7 @@ First, we consider the unconstrained optimization problem
 We assume that $f_0$ has "good" properties on $\mathbb{R}^n$, i.e., $f_0$ is twice continuously differentiable (or at least continuously differentiable).
 
 Provided optima exist (not always guaranteed!), we will derive conditions on a point $x^\star$ to be a **local optimum** of the problem. (in the unconstrained case, one also says that $x^\star$ is a **local minimizer** of $f_0$).
-To be able to characterize **global optimality**, we'll need to assume convexity of the objective function $f_0$. 
+To be able to characterize **global optimality**, we'll need to assume convexity of the objective function $f_0$.
 
 :::{important}
 Optimality conditions for the unconstrained optimization problem [](#optim-problem-unconstrained) can be of different types:
@@ -28,7 +28,7 @@ Optimality conditions for the unconstrained optimization problem [](#optim-probl
 - **First-order** (i.e. involving $\nabla f_0$) or **second-order** (i.e. involving $\nabla^2 f_0$)
 :::
 
-Most of the results from this section are reproduced from @nocedal2006numerical [Chapter 2], where detailed proofs are available. 
+Most of the results from this section are reproduced from @nocedal2006numerical [Chapter 2], where detailed proofs are available.
 
 ### Necessary conditions (unconstrained case)
 
@@ -52,7 +52,7 @@ Prove [](#thm:necessary-unconstrained-first) and [](#thm:necessary-unconstrained
 :::
 
 :::::{warning} Having $\nabla f_0(x^\star) = 0$ is not (always) enough ...
-[](#thm:necessary-unconstrained-first) and [](#thm:necessary-unconstrained-second) only give **necessary** conditions for a point $x^\star$ to be optimal. 
+[](#thm:necessary-unconstrained-first) and [](#thm:necessary-unconstrained-second) only give **necessary** conditions for a point $x^\star$ to be optimal.
 Some possible situations in 1D.
 ::::{grid}
 
@@ -74,7 +74,7 @@ Some possible situations in 1D.
 :::
 ::::
 For higher dimensions (here 2D), the situation is even more subtle.
-::::{grid} 
+::::{grid}
 
 :::{card}
 :header: $\nabla^2 f_0 (x^\star) \succ 0$ (strict local optimum)
@@ -98,7 +98,8 @@ For higher dimensions (here 2D), the situation is even more subtle.
 ### Sufficient conditions (unconstrained case)
 
 :::{prf:theorem} Second-order sufficient conditions [@nocedal2006numerical, Theorem 2.3]
-Suppose that $\nabla^2 f_0$ is continuous in an open neighborhood of $x^\star$ and that $\nabla f_0(x^\star) = 0$ and $\nabla^2 f_0(x^\star) \succ 0$ (is positive definite). Then $x^\star$ is a strict local optimum of [](#optim-problem-unconstrained), or equivalently, $x^\star$ is a strict local minimizer of $f_0$. 
+:label:thm:second_order_sufficient_conditions
+Suppose that $\nabla^2 f_0$ is continuous in an open neighborhood of $x^\star$ and that $\nabla f_0(x^\star) = 0$ and $\nabla^2 f_0(x^\star) \succ 0$ (is positive definite). Then $x^\star$ is a strict local optimum of [](#optim-problem-unconstrained), or equivalently, $x^\star$ is a strict local minimizer of $f_0$.
 :::
 
 :::{prf:remark}
@@ -108,11 +109,11 @@ Suppose that $\nabla^2 f_0$ is continuous in an open neighborhood of $x^\star$ a
     Example: $f(x) = x^4$; the point $x^\star = 0$ is a strict local minimizer (and global as well) but $f''(0) = 0$ shows that the Hessian is not positive definite at this point.
 :::
 
-::::{exercise} Quadratic function  
+::::{exercise} Quadratic function
 :class:dropdown
 Let $f:\mathbb{R}^2 \rightarrow \mathbb{R}$ such that $f(x) = x_1^2 - x_2^2$. Compute its gradient and Hessian. List critical points and their properties.
 
-To help, here is how to plot this function in Python. 
+To help, here is how to plot this function in Python.
 
 :::{code-cell} python
 import numpy as np
@@ -142,7 +143,7 @@ Does the point $[1, 1]^\top$ satisfy the necessary conditions? the sufficient co
 When $f_0$ is convex there is a simple characterization of optimal points.
 
 :::{prf:theorem} Unconstrained convex problems
-Consider the unconstrained optimization problem [](#optim-problem-unconstrained) and suppose that $f_0:\mathbb{R}^n\rightarrow \mathbb{R}$ is convex.  
+Consider the unconstrained optimization problem [](#optim-problem-unconstrained) and suppose that $f_0:\mathbb{R}^n\rightarrow \mathbb{R}$ is convex.
 A point $x^\star$ is a local optimum (hence global by [](#thm:uniqueness_cvx)) if and only if $x^\star$ is a stationary point of $f_0$, i.e., such that $\nabla f_0(x^\star) = 0$.
 :::
 

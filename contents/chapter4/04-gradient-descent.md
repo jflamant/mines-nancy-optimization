@@ -191,7 +191,6 @@ In a nutshell:
 
 To compare the effect of the proposed step-size selection strategies, let us consider the following example, adapted from @boyd2004convex.
 :::{math}
-:label:prob_unconstrained_descent_gd
 \begin{array}{ll}
 \minimize &\quad f_0(x):=e^{x_1+3x_2 - 0.1} + e^{x_1 -3x_2 - 0.1} + e^{-x_1 - 0.1}\\
 \st & \quad x \in \mathbb{R}^2

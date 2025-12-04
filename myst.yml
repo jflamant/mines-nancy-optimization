@@ -57,7 +57,7 @@ project:
         - file: contents/chapter5/03-nonlinear-cg.md
     - file: contents/chapter6/01-intro.md
       children:
-        # - file: contents/chapter6/02-mathematical-toolbox.md
+        - file: contents/chapter6/02-mathematical-toolbox.md
         - file: contents/chapter6/03-cv-gradient-descent.md
         - file: contents/chapter6/04-cv-newton-method.md
         - file: contents/chapter6/05-tradeoffs.md
@@ -86,7 +86,8 @@ project:
     title: true
 
 site:
-  template: book-theme
+  #template: book-theme
+  template: https://github.com/myst-templates/book-theme/archive/2234e910adc8f4607c616920cf2abb212da4d41b.zip # temporary fix, see https://github.com/orgs/jupyter-book/discussions/2552#discussioncomment-15161766; https://github.com/jupyter-book/jupyter-book/issues/2504
   nav:
     - title: Lab Work
       url: /lab-work

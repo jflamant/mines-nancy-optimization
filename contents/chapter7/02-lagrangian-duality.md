@@ -152,6 +152,7 @@ When $d^\star = p^\star$, we say that **strong duality** holds.
 For convex problems, a useful constraint qualification is known as *Slater's criterion*.
 
 :::{prf:proposition} Slater's constraint qualifications
+:label:prop:slater
 If the primal problem is convex, i.e., it takes the form
 $$
     \begin{split}

@@ -58,7 +58,6 @@ For details about the derivation of BFGS updates, properties of the algorithm an
 
 To compare the BFGS algorithm with gradient descent (fixed step-size) and Newton's method, we come back to the non-quadratic example introduced when studying [step-size strategies for gradient descent](./04-gradient-descent.md#comparison-of-step-size-strategies)
 :::{math}
-:label:prob_unconstrained_descent_gd
 \begin{array}{ll}
 \minimize &\quad f_0(x):=e^{x_1+3x_2 - 0.1} + e^{x_1 -3x_2 - 0.1} + e^{-x_1 - 0.1}\\
 \st & \quad x \in \mathbb{R}^2

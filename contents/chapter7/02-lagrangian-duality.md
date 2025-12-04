@@ -272,6 +272,6 @@ ax[0].plot(L(x, 1), label='$L(x, \lambda^\star)$', color='b')
 ax[1].plot(L(1, lam),  label='$L(x^\star, \lambda)$', color='r')
 ax[0].set_xlabel('$x$')
 ax[1].set_xlabel('$\lambda$')
-fig.legend()
+fig.legend();
 :::
 ::::

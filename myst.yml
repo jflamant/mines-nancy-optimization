@@ -86,8 +86,7 @@ project:
     title: true
 
 site:
-  #template: book-theme
-  template: https://github.com/myst-templates/book-theme/archive/2234e910adc8f4607c616920cf2abb212da4d41b.zip # temporary fix, see https://github.com/orgs/jupyter-book/discussions/2552#discussioncomment-15161766; https://github.com/jupyter-book/jupyter-book/issues/2504
+  template: book-theme
   nav:
     - title: Lab Work
       url: /lab-work

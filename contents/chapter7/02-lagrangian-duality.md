@@ -117,7 +117,7 @@ $$
 :::
 
 **Comments**
-- a pair $(\lambda, \nu)$ is said to be \alert{dual feasible} if $\lambda \geq 0$ and $g(\lambda, \nu) > -\infty$
+- a pair $(\lambda, \nu)$ is said to be **dual feasible** if $\lambda \geq 0$ and $g(\lambda, \nu) > -\infty$
 - the dual optimal parameters are denoted by $(\lambda^\star, \nu^\star)$
 - the dual problem is **always convex** (since $g$ is always concave) even if the primal problem isn't!
 

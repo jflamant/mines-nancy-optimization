@@ -1,3 +1,7 @@
+---
+kernelspec:
+    name: python3
+---
 # Penalty method
 
 ## Principle
@@ -91,7 +95,7 @@ p(x)=\tfrac12\left[\max(0,f_1(x))\right]^2
       =\tfrac12 \left[f_1^+(x)\right]^2 .
 $$
 
-### **How to compute the gradient of the penalty function?**
+**How to compute the gradient of the penalty function?**
 
 A potential concern is that $f_1^+$ is not differentiable at points where  $f_1(x)=0$. However, the penalty can be written as a composition
 $$
@@ -155,3 +159,149 @@ The objective is convex, with gradient $\nabla f_\rho(x)= x + \rho A^\top (Ax-b)
 
 Tedious calculations (e.g., using the SVD) show that, in the limit $\rho\to \infty$, $x_\rho \to x^\star$ with $x^\star = A^\top(AA^\top)^{-1}b$.
 :::
+
+### A nonconvex 1D example
+
+We consider the following nonconvex optimization problem
+:::{math}
+\begin{array}{ll}
+\minimize & \quad (x_1-1)^2 + (x_2+1)^2\\
+\st&\quad x_1^2+x_2^2 - \sin(3x_1)\cos(2x_2) -2\leq 0
+\end{array}
+:::
+
+The feasible set of this problem is nonconvex, as shown by the plot below (green area).
+```{code-cell} python
+:tags:[hide-input]
+import numpy as np
+import matplotlib.pyplot as plt
+
+# define objective and constraints
+def f(x, y):
+    return (x - 2)**2 + (y + 1)**2
+
+def g(x, y):
+    """Nonlinear inequality constraint g(x,y) <= 0"""
+    return -(2- x**2-y**2 +  np.sin(3*x) * np.cos(2*y))
+
+# Grid for contour plots
+xx = np.linspace(-2.5, 3, 400)
+yy = np.linspace(-2.5, 2.5, 400)
+X, Y = np.meshgrid(xx, yy)
+
+F = f(X, Y)
+G = g(X, Y)
+
+plt.figure(figsize=(10, 8))
+
+# Objective contours
+CS1 = plt.contour(X, Y, F, levels=20, cmap='viridis', alpha=0.6)
+plt.clabel(CS1, inline=1, fontsize=8)
+
+# Constraint boundary (g(x,y)=0)
+CS2 = plt.contour(X, Y, G, levels=[0], colors='red', linewidths=2)
+plt.clabel(CS2, fmt={0: '$f_1(x) = 0$'}, fontsize=10)
+
+# Feasible region shading
+plt.contourf(X, Y, G, levels=[-10, 0], colors=['#d0ffd0'], alpha=0.3)
+plt.xlabel("$x_1$")
+plt.ylabel("$x_2$")
+plt.scatter(2, -1, color='black', marker='*', s=150, label='Unconstrained solution')
+plt.legend()
+```
+Let us display how the penalized cost function will look for different values of $\rho$.
+
+```{code-cell} python
+:tags:[hide-input]
+rhos = [0, .1, .5, 1]
+Gplus = np.maximum(0, G)
+fig, ax = plt.subplots(ncols=len(rhos), figsize=(12, 4), sharex=True, sharey=True)
+for i, rho in enumerate(rhos):
+
+    ax[i].contour(X, Y, F+rho*(Gplus)**2)
+    ax[i].set_title(r'$\rho = '+str(rho)+'$')
+```
+We can iteratively minimize penalized problems with increasing penalty parameter $\rho$. Let's do this numerically and plot the results.
+
+```{code-cell} python
+:tags:[hide-input]
+# redefine function to be used with scipy minimize
+from scipy.optimize import minimize
+
+def f(xy):
+    x, y = xy
+    return (x - 2)**2 + (y + 1)**2
+
+def g(xy):
+    x, y = xy
+    return -(2- x**2-y**2 +  np.sin(3*x) * np.cos(2*y))
+
+def g_plus(xy):
+    return max(0.0, g(xy))
+
+# penalized objective
+def P_mu(xy, rho):
+    return f(xy) + 0.5 * rho * g_plus(xy)**2
+
+
+rhos = [1, 2, 5, 10, 100]
+solutions = []
+
+x0 = np.array([2, -1])   # initial guess
+
+for rho in rhos:
+
+    # Wrap for minimize
+    fun = lambda xy: P_mu(xy, rho)
+
+    # Run optimizer
+    res = minimize(fun, x0, method='BFGS') #options={'disp': True} to show details
+
+    sol = res.x
+    solutions.append(sol)
+
+
+    # warm start next iteration
+    x0 = sol
+
+print("\nSolutions for increasing rho:")
+for rho, sol in zip(rhos, solutions):
+    print(f"rho={rho:4d}:  x={sol},  f_1(x)={g(sol)}")
+
+## plots
+xx = np.linspace(-2.5, 3, 400)
+yy = np.linspace(-2.5, 2.5, 400)
+X, Y = np.meshgrid(xx, yy)
+
+F = (X - 2)**2 + (Y + 1)**2
+G = X**2+Y**2 -  np.sin(3*X) * np.cos(2*Y)-2
+
+plt.figure(figsize=(10, 8))
+
+# Objective contours
+CS1 = plt.contour(X, Y, F, levels=20, cmap='viridis', alpha=0.6)
+plt.clabel(CS1, inline=1, fontsize=8)
+
+# Constraint boundary
+CS2 = plt.contour(X, Y, G, levels=[0], colors='red', linewidths=2)
+plt.clabel(CS2, fmt={0: "$f_1(x) = 0$"}, fontsize=10)
+
+# Feasible region shading
+plt.contourf(X, Y, G, levels=[-10, 0], colors=['#d0ffd0'], alpha=0.3)
+
+# Plot solutions for each mu
+colors = ['blue', 'green', 'orange', 'purple', 'red']
+for sol, rho, col in zip(solutions, rhos, colors):
+    plt.scatter(sol[0], sol[1], color=col, s=80, label=f"ρ={rho}")
+
+
+plt.title("Penalty Method in 2D")
+plt.xlabel("$x_1$")
+plt.ylabel("$x_2$")
+plt.scatter(2, -1, color='black', marker='*', s=150, label='Unconstrained solution')
+plt.legend()
+plt.grid(alpha=0.3)
+plt.show()
+```
+
+In the limit of large $\rho$, we would get the (unique) solution to the initial problem. Stopping at a given $\rho$ value gives an approximation of that point, characterized by the value of $f_1(x)$, which quantifies "how much" we are violating the constraint.

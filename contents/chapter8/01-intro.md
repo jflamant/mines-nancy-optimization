@@ -1,4 +1,4 @@
-# Contrained optimization algorithms
+# Constrained optimization algorithms
 
 We again consider the general, possibly nonconvex optimization problem
 $$

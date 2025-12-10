@@ -113,7 +113,7 @@ plt.show()
 print("Estimated coefficients (in increasing powers of t):\n", model.coef_)
 ```
 
-In [TP1](), we will see what's under the hood of such tools and implement the solution from scratch.
+In [TP1](../../labs/LW1.ipynb), we will see what's under the hood of such tools and implement the solution from scratch.
 
 ::::{note} How to write the polynomial model as a linear model?
 **Polynomial model**

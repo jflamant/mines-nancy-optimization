@@ -227,7 +227,7 @@ i.e., $(x^\star, \lambda^\star)$ define a saddle point of the Lagrangian.
 Conversely, if $(x, \lambda)$ is a saddle-point of the Lagrangian, then $ x$ is primal optimal, $\lambda$ is dual optimal with zero duality gap.
 
 ::::{prf:example} A simple 1D example
-
+:label:example_saddle_point
 Consider the problem
 $$
 \begin{split}

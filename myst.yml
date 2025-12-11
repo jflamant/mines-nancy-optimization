@@ -65,6 +65,12 @@ project:
       children:
         - file: contents/chapter7/02-lagrangian-duality.md
         - file: contents/chapter7/03-kkt.md
+    - file: contents/chapter8/01-intro.md
+      children:
+        - file: contents/chapter8/02-penalty-method.md
+        - file: contents/chapter8/03-projected-gd.md
+        - file: contents/chapter8/04-uzawa-method.md
+        - file: contents/chapter8/05-cvxpy.md
     - file: labs/lab-work.md
       children:
         - file: labs/LW1.ipynb

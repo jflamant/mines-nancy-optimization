@@ -10,6 +10,7 @@ $$
 where the constraint set $\Omega$ is parameterized by equality and inequality constraints
 $$\Omega = \left\lbrace x \in \mathbb{R}^n \mid f_i(x) \leq 0, \:  i = 1, \ldots, m, \quad
 h_i(x)  = 0, \: i = 1, \ldots,p\right\rbrace$$
+For simplicity, we assume in this section that the domain $\mathcal{D}= \mathbb{R}^n$, hence constraint set and feasible set coincide $\Omega =  \mathcal{F}$.
 
 In this chapter, we introduce several algorithmic strategies to solve such optimization problem.
 

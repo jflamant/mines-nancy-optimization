@@ -55,7 +55,9 @@ Under suitable conditions, such algorithm is shown to converge to a saddle-point
 **return** aproximate solution $x^{(k)}$ and optimal Lagrange multipliers $
 :::
 
-## Example
+## Examples
+
+### 1D example
 
 Consider the following problem
 $$
@@ -114,3 +116,22 @@ plt.title('Lagrangian')
 plt.plot(xks, lks[:-1], '-o', c='r', )
 ```
 We clearly observe converge to the optimums $\lambda^\star = 2$ and $x^\star = 2$.
+
+### Non-negative least squares
+
+Let us write Uzawa's iterates for the following problem
+$$
+    \begin{split}
+      \minimize&\quad \frac{1}{2}\Vert y - Ax\Vert_2^2\\
+      \text{subject to}&\quad x\geq 0
+      \end{split}
+$$
+where $A$ is full column rank.
+
+The Lagrangian for the problem is $L(x, {\lambda}) =  \frac{1}{2}\Vert y - Ax\Vert_2^2 - {\lambda}^\top x$ with gradient with respect to $x$ given by $\nabla_{x} L(x, {\lambda}) = A^\top (Ax-y) -{\lambda}$.
+Therefore we have the iterations
+\begin{align*}
+  x^{(k+1)} = (A^\top A)^{-1}\left[A^\top y + {\lambda}^{(k)}\right]\\
+  {\lambda}^{(k+1)} =[{\lambda}^{(k)} -\alpha_k x^{(k+1)}]^+
+\end{align*}
+until primal and dual convergence.

@@ -7,10 +7,6 @@ title: Welcome!
 
 Welcome to the website of the 2025-2026 optimization course at Mines Nancy.
 
-:::{warning} In construction! 
-These lectures notes are still in construction, and will be updated throughout the first semester of 2025-2026. 
-:::
-
 ## What to expect from this course
 
 > In short: an hands-on introduction to numerical optimization with Python
@@ -25,29 +21,29 @@ These lectures notes are still in construction, and will be updated throughout t
 
 ## Organisation of the course
 
-- 36h of classes, including lectures, exercices and lab work (Python). 
+- 36h of classes, including lectures, exercices and lab work (Python).
 
 - Course material in in english. Lectures will be given in french or english, depending on the audience.
 
 - Main results will be on lecture slides and/or on the course website, but detailed computations, proofs and exercises solutions will not, in general. So **take notes!**
 
-- **Bring your computer to class!** We'll alternate between exercices on paper and on the computer. 
+- **Bring your computer to class!** We'll alternate between exercices on paper and on the computer.
 
-- Lecture slides, exercise sheets and additional documents are all available from the [Arche website](https://arche.univ-lorraine.fr/course/view.php?id=74098). (Internal access only). 
+- Lecture slides, exercise sheets and additional documents are all available from the [Arche website](https://arche.univ-lorraine.fr/course/view.php?id=74098). (Internal access only).
 
 :::{note} Prerequisites
 The course requires basic notions of elementary differential calculus and linear algebra. It assumes you have some notions of Python, and some knowledge of the standard libraries (NumPy, matplotlib)
 :::
 
-## Evaluation 
+## Evaluation
 This might be subject to slight changes, but for now the course will be graded as follows:
 - *intermediate exam* (about 40%): somewhere in november
 - *final exam* (about 60%): January 13th, 2026
-The final exam will cover both theoretical and practical (Python programming) aspects of the course. 
+The final exam will cover both theoretical and practical (Python programming) aspects of the course.
 
-## Important references 
+## Important references
 Most of the material of this course has been adapted from classical textbooks of the literature on numerical optimization.
-This course also largely benefited from previous course material kindly shared by Y. Privat at Mines Nancy. 
+This course also largely benefited from previous course material kindly shared by Y. Privat at Mines Nancy.
 
 :::{important} Books
 - Nocedal, J., & Wright, S. J. (2006). Numerical optimization. New York, NY: Springer New York. (Second Edition)
@@ -56,12 +52,12 @@ This course also largely benefited from previous course material kindly shared b
 - Bertsekas, D. P. (1999). Nonlinear programming. Athena Scientific. (Second Edition)
 :::
 
-Many interesting material on numerical optimization can also be found online. 
+Many interesting material on numerical optimization can also be found online.
 
 :::{important} Online material
-- [Convex optimization book's webpage](https://web.stanford.edu/~boyd/cvxbook/): includes free pdf of the book, lectures slides, exercises, etc. 
+- [Convex optimization book's webpage](https://web.stanford.edu/~boyd/cvxbook/): includes free pdf of the book, lectures slides, exercises, etc.
 - [MIT OpenCourseWare](https://ocw.mit.edu/): several courses on optimization by D. Bertsekas.
-- [Numerical tours](https://www.numerical-tours.com/): several implementations and applications in machine learning / signal processing of optimization algorithms, by G. Peyré. 
+- [Numerical tours](https://www.numerical-tours.com/): several implementations and applications in machine learning / signal processing of optimization algorithms, by G. Peyré.
 :::
 
 ## Contact

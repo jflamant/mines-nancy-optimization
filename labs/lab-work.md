@@ -29,3 +29,8 @@ Implement two least squares problems (regression, denoising) and their solutions
 :link: LW2.ipynb
 Implement two least squares problems (regression, denoising) and their solutions.
 :::
+
+:::{card} LW3: Algorithms for non-negative matrix factorization
+:link: mini-project-NMF.ipynb
+Implement and test several algorithms for NMF.
+:::

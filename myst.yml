@@ -77,6 +77,8 @@ project:
           hidden: false
         - file: labs/LW2.ipynb
           hidden: false
+        - file: labs/mini-project-NMF.ipynb
+          hidden: false
 
 
   math:

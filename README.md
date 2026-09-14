@@ -5,7 +5,7 @@ title: Welcome!
 [![build](https://github.com/jflamant/mines-nancy-optimization/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/jflamant/mines-nancy-optimization/actions/workflows/deploy.yml)
 ![last commit)](https://img.shields.io/github/last-commit/jflamant/mines-nancy-optimization/main)
 
-Welcome to the website of the 2025-2026 optimization course at Mines Nancy.
+Welcome to the website of the 2026-2027 optimization course at Mines Nancy.
 
 ## What to expect from this course
 
@@ -38,7 +38,7 @@ The course requires basic notions of elementary differential calculus and linear
 ## Evaluation
 This might be subject to slight changes, but for now the course will be graded as follows:
 - *intermediate exam* (about 40%): somewhere in november
-- *final exam* (about 60%): January 13th, 2026
+- *final exam* (about 60%): January 5th, 2027
 The final exam will cover both theoretical and practical (Python programming) aspects of the course.
 
 ## Important references

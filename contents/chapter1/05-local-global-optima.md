@@ -6,22 +6,22 @@ kernelspec:
 # Local and global optima
 
 ## Definitions
-Consider the general constrained optimization problem 
+Consider the general constrained optimization problem
 :::{math}
 :label: optim_pb
 \begin{array}{ll}
 \minimize& f_0(x)\\
 \st & x \in \Omega\end{array}
 :::
-We suppose that the problem is solvable, i.e., $p^\star$ is finite and there exists $x^\star \in \Omega$ such that $f(x^\star) = p^\star$. 
-In many settings, it is important to be able to distinguish between **local** and **global** optima of a given optimization problem. 
+We suppose that the problem is solvable, i.e., $p^\star$ is finite and there exists $x^\star \in \Omega$ such that $f_0(x^\star) = p^\star$.
+In many settings, it is important to be able to distinguish between **local** and **global** optima of a given optimization problem.
 
 :::{prf:definition} Global optima
-A point $x \in \Omega$ is a **global optimum** of [](#optim_pb) if $f(x) = p^\star$. If the set $\{x \in \Omega \mid f(x) = p^\star\}$ is a singleton, then the problem admits a **unique solution** (we also say $x$ is a **strict global optimum**).
+A point $x \in \Omega$ is a **global optimum** of [](#optim_pb) if $f_0(x) = p^\star$. If the set $\{x \in \Omega \mid f_0(x) = p^\star\}$ is a singleton, then the problem admits a **unique solution** (we also say $x$ is a **strict global optimum**).
 :::
 
 :::{prf:definition} Local optima
-A point $x \in \Omega$ is a **local optimum** for the problem [](#optim_pb) if there exists $\varepsilon > 0$ such that $f(z) \geq f(x)$ for all $z \in \Omega \setminus \lbrace x\rbrace$ and $\Vert z - x\Vert \leq \varepsilon$. If the inequality is strict ($f(z) > f(x)$), then $x$ is said to be a **strict local optimum** for the optimization problem. 
+A point $x \in \Omega$ is a **local optimum** for the problem [](#optim_pb) if there exists $\varepsilon > 0$ such that $f_0(z) \geq f_0(x)$ for all $z \in \Omega \setminus \lbrace x\rbrace$ and $\Vert z - x\Vert \leq \varepsilon$. If the inequality is strict ($f_0(z) > f_0(x)$), then $x$ is said to be a **strict local optimum** for the optimization problem.
 :::
 
 :::{prf:remark}
@@ -34,7 +34,7 @@ $$
 &\Vert z -x \Vert \leq \varepsilon
 \end{array}
 $$
-i.e., $x$ is a **solution of [](#optim_pb) around nearby feasible points**. 
+i.e., $x$ is a **solution of [](#optim_pb) around nearby feasible points**.
 :::
 
 :::{figure} figures/local-global.png
@@ -44,12 +44,12 @@ i.e., $x$ is a **solution of [](#optim_pb) around nearby feasible points**.
 - $x_3$ is a local optimum
 
 ## Examples
-To illustrate the notion of local / global optima we consider the unconstrained optimization case of a given function $f_0(x)$. 
-### 1D polynomial function 
+To illustrate the notion of local / global optima we consider the unconstrained optimization case of a given function $f_0(x)$.
+### 1D polynomial function
 
 Consider the 1D function defined over $\mathbb{R}$ as
 $$f_0(x) = 360x - 6x^2 - 498.167x^3 + 13.1875x^4 + 44x^5 - 3.20833x^6 - 1.14286x^7 + 0.125x^8$$
-The unconstrained optimization problem, which consists in finding $x$ that minimizes $f_0$ over $\mathbb{R}$, admits a unique solution given by $x^\star = 6$ (the global optimum). Yet they are many local optima, as shown by the following snippet. 
+The unconstrained optimization problem, which consists in finding $x$ that minimizes $f_0$ over $\mathbb{R}$, admits a unique solution given by $x^\star = 6$ (the global optimum). Yet they are many local optima, as shown by the following snippet.
 
 :::{code-cell} python
 import numpy as np
@@ -87,7 +87,7 @@ The Rastrigin function is a non-convex function commonly used as a performance t
 :::{math}
 f_0(x_1, x_2) = 20 + x_1^2 + x_2^2 - 10\left(\cos(2\pi x_1) + \cos(2\pi x_2)\right)
 :::
-where $x_1, x_2 \in \mathbb{R}$. As shown by the following code snippet, it has many local optima and a single global optimum at $(x_1, x_2) = (0, 0)$. 
+where $x_1, x_2 \in \mathbb{R}$. As shown by the following code snippet, it has many local optima and a single global optimum at $(x_1, x_2) = (0, 0)$.
 
 
 :::{code-cell} python

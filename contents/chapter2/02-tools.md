@@ -1,6 +1,6 @@
 # The mathematical toolbox
 This section reviews essential mathematical concepts used throughout optimization. We focus on differentiability, gradients, Hessians, and related tools that form the foundation for analyzing and solving optimization problems.
-## Differentiability 
+## Differentiability
 
 Let $f: U \to \mathbb{R}$ be a function defined on an open subset $U$ of $\mathbb{R}^n$.
 
@@ -23,9 +23,9 @@ $$
 The function $f$ is said to be of class $C^k$ on $U$ if all its partial derivatives up to order $k$ exist and are continuous on $U$.
 :::
 
-If $f \in C^1$, we say it is *continuously differentiable*. If $f\in C^2$, we say it is *twice continuously differentiable*. 
+If $f \in C^1$, we say it is *continuously differentiable*. If $f\in C^2$, we say it is *twice continuously differentiable*.
 
-:::{prf:theorem}  
+:::{prf:theorem}
 If $f$ admits partial derivatives at every point in a neighborhood of $a$, and if the functions $\frac{\partial f}{\partial x_i}$ are continuous at $a$, then $f$ is differentiable at $a$.
 :::
 Keep in mind that the converse is not true, as shown by the following example.
@@ -36,7 +36,7 @@ The function $f(x_1, x_2) = |x_1 x_2|$ is differentiable at $(0, 0)$ but its par
 
 
 ## Gradient and Hessian
-Probably two of the most important tools for this lecture! 
+Probably two of the most important tools for this lecture!
 
 :::{prf:definition} Gradient
 Assume $f:\mathbb{R}^n \rightarrow \mathbb{R}$ is at least of class $C^1$.
@@ -46,14 +46,14 @@ $$
     \dfrac{\partial f}{\partial x_1}(a)&
     \dfrac{\partial f}{\partial x_2}(a)&
     \cdots&
-    \dfrac{\partial f}{\partial x_N}(a)
+    \dfrac{\partial f}{\partial x_n}(a)
 \end{bmatrix}^\top
 \in \mathbb{R}^n
 $$
 is called the **gradient of $f$ at point $a$**.
-::: 
+:::
 
-:::{prf:remark} 
+:::{prf:remark}
 The differential of $f$ at $a$ reads $df_{a}(h) = \nabla f(a)^\top h$.
 :::
 
@@ -69,7 +69,7 @@ $$
     \frac{\partial^2 f}{\partial x_n\partial x_1}(a) & \frac{\partial^2 f}{\partial x_n\partial x_2}(a) & \cdots & \frac{\partial^2 f}{{\partial x_n}^2}(a)
 \end{bmatrix} \in \mathbb{R}^{n\times n}
 $$
-is called the **Hessian matrix of $f$ at point $a$**. Sometimes the notation $\mathsf{Hess}\,f (a)$ is also used. 
+is called the **Hessian matrix of $f$ at point $a$**. Sometimes the notation $\mathsf{Hess}\,f (a)$ is also used.
 :::
 
 :::{prf:remark} Important!
@@ -99,12 +99,12 @@ We write $A \succeq 0$ when it is PSD, and $A \succ 0$ when it is PD.
 :::{prf:proof}
 :nonumber:
 :class:dropdown
-  Let $A \in \mathbb{R}^{n\times n}$ be symmetric. By the spectral theorem, $A$ is diagonizable by a orthogonal matrix $Q\in \mathbb{R}^{n\times n}$ such that $A = Q D  Q^\top$, where $D = \diag(\lambda_1, \lambda_2, \ldots, \lambda_N)$ is a real diagonal matrix.
+  Let $A \in \mathbb{R}^{n\times n}$ be symmetric. By the spectral theorem, $A$ is diagonizable by a orthogonal matrix $Q\in \mathbb{R}^{n\times n}$ such that $A = Q D  Q^\top$, where $D = \diag(\lambda_1, \lambda_2, \ldots, \lambda_n)$ is a real diagonal matrix.
   Then let $v \in \mathbb{R}^n$ be arbitrary and denote by $w = Q^T v$ its projection into the orthonormal basis defined by $Q$. Compute
   $$
   v^\top A v = v^T Q D Q^T v = w^\top D w = \sum_{i=1}^n \lambda_i w_i^2
   $$
-  Clearly, this expression is non-negative for all $v$ if and only if $\lambda_i \geq 0$ for  every $i=1, \ldots, n$, and strictly positive if and only $\lambda_i > 0$ for every $i=1, \ldots, n$. 
+  Clearly, this expression is non-negative for all $v$ if and only if $\lambda_i \geq 0$ for  every $i=1, \ldots, n$, and strictly positive if and only $\lambda_i > 0$ for every $i=1, \ldots, n$.
 :::
 As we shall see, the positive (semi)-definiteness of the Hessian matrix is crucial to characterize solutions of optimization problems.
 

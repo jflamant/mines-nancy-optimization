@@ -7,7 +7,7 @@ kernelspec:
 # Introductory example
 
 ## Problem statement
-To motivate first definitions, let us consider the following practical shape optimization problem. 
+To motivate first definitions, let us consider the following practical shape optimization problem.
 
 ::::{grid} 1 2 2 2
 
@@ -24,29 +24,29 @@ They formulate one explicit **constraint**: the volume of the can must be $V_0 =
 ::::
 
 We assume objects of constant thickness $e$. Therefore, the quantity of raw material is simply given by
-$$\text{quantity of raw material } = \text{ area of cylinder } \times e $$ 
+$$\text{quantity of raw material } = \text{ area of cylinder } \times e $$
 
-Since the goal is to optimize (i.e., in this case, minimize) the consumption of raw material, the optimization problems can be formulated in layman's terms as follows: 
+Since the goal is to optimize (i.e., in this case, minimize) the consumption of raw material, the optimization problems can be formulated in layman's terms as follows:
 :::{admonition}
 How to minimize the area $A$ of a cylinder with given volume $V_0$?
 :::
 
 
-## Mathematical formulation 
+## Mathematical formulation
 
 **Expression of the area $A$** (objective function or criterion)
 $$ A(r, h) = A_{\text{cylinder}}(r, h) + A_{\text{lids}}(r, h) =  2\pi r h + 2 \pi r^2$$
 
 The dimensions $r$ and $h$ are the **variables** of the optimization problem.
 
-**Constraints** 
+**Constraints**
 We have *explicit*  and *implicit* constraints:
 - Constant volume $V_0 = 1$ L. This one is explicitly given in the statement of the problem, and reads
 $$V(r, h) = \pi r^2 h = V_0$$
 - Non-negativity: the variables $r$ and $h$ must be non-negative owing to their interpretation as physical dimensions
 $$r\geq 0,\qquad h\geq 0$$
 
-The **constrained optimization problem** is finally written as 
+The **constrained optimization problem** is finally written as
 $$\text{Find } (r^\star, h^\star) \text{ such that } A(r^\star, h^\star) \text{ is minimal and } \begin{cases}r\geq 0 \text{ and } h\geq 0\\ \pi r^2 h = V_0\end{cases}$$
 
 ## Simplification
@@ -60,12 +60,12 @@ A(r, h) &= 2\pi r h + 2\pi r^2\\
 &= \frac{2V_0}{r} + 2\pi r^2\\
 &:= \tilde{A}(r)
 \end{align*}
-The volume constraint is directly taken into account in the new objective function $\tilde{A}(r)$. 
-We consider the constraint $r\geq 0$ when searching for the minimum of $\tilde{A}(r)$ over $\mathbb{R}_+$;
+The volume constraint is directly taken into account in the new objective function $\tilde{A}(r)$.
+We consider the constraint $r > 0$ when searching for the minimum of $\tilde{A}(r)$ over $\mathbb{R}_+^*$;
 
-## Visualization using Python 
+## Visualization using Python
 
-Let us plot the objective function using basic Python commands. 
+Let us plot the objective function using basic Python commands.
 
 :::{code-cell} python
 # import libraries
@@ -83,7 +83,7 @@ def A_cylinder(r):
     return 2 * np.pi * r * h(r)
 
 def A(r):
-    return A_couvercle(r) + A_cylindre(r)
+    return A_lids(r) + A_cylinder(r)
 
 # define variables and constraints
 V0 = 1000  # volume in cm^3 (=1 L)
@@ -101,11 +101,11 @@ plt.show()
 
 The plot suggests a minimizer exists, somewhere between $r=4$ cm and $r = 6$ cm. Quite naturally, the minimum area value is obtained when the derivative of $\tilde{A}(r)$ vanishes. Let us do the explicit computation.
 
-## Explicit solutions 
+## Explicit solutions
 
 
 The derivative of the objective function vanishes at its minimum.
-  
+
 ```{math}
 \frac{\mathrm{d}\tilde{A}(r)}{\mathrm{d}r} = 4\pi r - \frac{2 V_0}{r^2}
 ```
@@ -115,6 +115,8 @@ $$
 \left.\frac{\mathrm{d}\tilde{A}(r)}{\mathrm{d}r}\right|_{r = r^\star} = 0 \iff 4\pi r^\star = \frac{2V_0}{(r^\star)^2} \iff r^\star = \left[\frac{V_0}{2\pi}\right]^{1/3}
 $$
 
+Since $\tilde{A}''(r) = \frac{4V_0}{r^3} + 4\pi > 0$ for all $r > 0$, $\tilde{A}$ is strictly convex on $\mathbb{R}_+^*$, so this stationary point is the unique global minimizer.
+
 In summary, the solutions to the optimization problem are
 
 ```{math}
@@ -122,7 +124,7 @@ r^\star = \left[\frac{V_0}{2\pi}\right]^{1/3} \qquad \hat{h} = \frac{V_0}{\pi (r
 ```
 
 :::{warning}
-In this simple case, the solution is explicit and does not require a resolution algorithm. Keep in mind that this is not the case in general. 
+In this simple case, the solution is explicit and does not require a resolution algorithm. Keep in mind that this is not the case in general.
 :::
 
 We can also check that our computations are correct using Python, by modifying the previous code.
@@ -147,5 +149,4 @@ print(f"Minimal area A(r_opt): A_min = {A_lids(r_star) + A_cylinder(r_star):.2f}
 print(f"Associated optimal height value h(r_opt): h_opt = {h(r_star):.2f} cm")
 :::
 
-You can play around with this code snippets and see how the solution changes as we modify the value of $V_0$. 
-
+You can play around with this code snippets and see how the solution changes as we modify the value of $V_0$.

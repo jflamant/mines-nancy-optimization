@@ -1,7 +1,7 @@
 # Standard optimization problems
 
 Several optimization problems are so frequently encountered  that they are given specific names.
-Recall the most general form of optimization problems encountered in this course: 
+Recall the most general form of optimization problems encountered in this course:
 :::{math}
 \begin{array}{lll}
 \text{minimize}     & f_0(x) & \\
@@ -10,7 +10,7 @@ Recall the most general form of optimization problems encountered in this course
 \end{array}
 :::
 
-For specific choices of objective and constraint functions, one obtains different classes of optimization problems. 
+For specific choices of objective and constraint functions, one obtains different classes of optimization problems.
 
 :::{important}
 Being able to recognize to which class a given problem belongs is important, as efficient resolution methods are usually problem dependent.
@@ -65,7 +65,7 @@ where $x\in \mathbb{R}^n$ contains the (non-negative) quantities of each food.
 ## Quadratic programming
 When the objective function is quadratic and the constraints are affine, we obtain a Quadratic Program (QP).
 
-### QP general form 
+### QP general form
 :::{math}
 :label: def:QP
 \begin{split}
@@ -78,11 +78,11 @@ where $P$ is a symmetric matrix (but not necessarily positive semidefinite).
 ### Comments
 - Like in LPs, the feasible set is a polyhedron.
 - QPs are fundamental for many fields, ranging from signal processing, parameter estimation, regression, machine learning, econometrics, etc.
-- Have a direct connection with [least squares problems](../chapter3/01-intro.md) that we will consider later on. 
+- Have a direct connection with [least squares problems](../chapter3/01-intro.md) that we will consider later on.
 
 ### Example: Gaussian maximum likelihood estimation
 
-We want to estimate the mean ${\theta} \in \mathbb{R}^n$ of a Gaussian random variable $\mathcal{N}({\theta}, {\Sigma})$, with known covariance matrix ${\Sigma}$, from $m$ i.i.d. measurements $y_1, \ldots, y_m \sim \mathcal{N}({\theta}, {\Sigma})$. 
+We want to estimate the mean ${\theta} \in \mathbb{R}^n$ of a Gaussian random variable $\mathcal{N}({\theta}, {\Sigma})$, with known covariance matrix ${\Sigma}$, from $m$ i.i.d. measurements $y_1, \ldots, y_m \sim \mathcal{N}({\theta}, {\Sigma})$.
 
 Recall that
 :::{math}
@@ -92,7 +92,7 @@ p(y_i; {\theta}) = \frac{1}{(2\pi)^{n/2}\vert {\Sigma}\vert^{1/2}}\exp\left(-\fr
 **Maximum likelihood (ML) principle**
 
 :::{math}
-\text{find } {\theta}^\star \in \argmax_{{\theta}\in \mathbb{R}^n} \mathcal{L}({{\theta}}; y_1, \ldots, y_m):= p(y_1, \ldots, y_m ; {\theta}) 
+\text{find } {\theta}^\star \in \argmax_{{\theta}\in \mathbb{R}^n} \mathcal{L}({{\theta}}; y_1, \ldots, y_m):= p(y_1, \ldots, y_m ; {\theta})
 :::
 
 The function $\mathcal{L}({\theta}; y_1, \ldots, y_m)$ is called the *likelihood function*. The goal of ML estimation is to find the parameter ${\theta}$ for which the data $y_1, \ldots, y_m$ has the highest joint probability.
@@ -120,7 +120,7 @@ which can be rewritten as the (unconstrained) QP
 
 ## Convex programming
 
-LPs and QPs (under some conditions) are instances of **convex optimization problems**. 
+LPs and QPs (under some conditions) are instances of **convex optimization problems**.
 
 In the next chapter, we will precisely define this notion and see why it plays such an important role in optimization problems.
 
@@ -135,9 +135,9 @@ In the next chapter, we will precisely define this notion and see why it plays s
 where $f_0$ and $f_1, \ldots, f_m$ are *convex* functions.
 
 ### Comments
-- in convex problems, equality constraints $h_i(x) = 0$ must be affine functions, i.e., of the form $h_i(x) = a_i^\top x - b_i$. **Proof in exercise!**
+- in the standard form of a convex problem, equality constraints $h_i(x) = 0$ are required to be affine functions, i.e., of the form $h_i(x) = a_i^\top x - b_i$. Indeed, $\lbrace x \mid h_i(x)=0\rbrace$ is guaranteed to be convex when $h_i$ and $-h_i$ are both convex, which holds only if $h_i$ is affine. A non-affine equality constraint generally makes the feasible set non-convex.
 - CPs have the important property that any local optima is also a global optima.
 - Many practical problems in engineering, economics, and data science can be formulated as convex programs.
-- The theory of convex optimization provides strong guarantees on solution existence, uniqueness, and stability.
+- The theory of convex optimization provides strong guarantees: every local optimum is a global optimum, and efficient algorithms exist.
 
 In this course, we will mostly focus on **convex optimization** problems.

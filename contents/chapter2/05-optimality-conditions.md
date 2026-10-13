@@ -83,7 +83,7 @@ For higher dimensions (here 2D), the situation is even more subtle.
 :::
 
 :::{card}
-:header: $\nabla^2 f_0 (x^\star) \succeq 0$ (saddle point)
+:header: $\nabla^2 f_0 (x^\star)$ indefinite (saddle point)
 ![2D saddle](figures/saddlepoint.png)
 :::
 
@@ -97,7 +97,7 @@ For higher dimensions (here 2D), the situation is even more subtle.
 
 ### Sufficient conditions (unconstrained case)
 
-:::{prf:theorem} Second-order sufficient conditions [@nocedal2006numerical, Theorem 2.3]
+:::{prf:theorem} Second-order sufficient conditions [@nocedal2006numerical, Theorem 2.4]
 :label:thm:second_order_sufficient_conditions
 Suppose that $\nabla^2 f_0$ is continuous in an open neighborhood of $x^\star$ and that $\nabla f_0(x^\star) = 0$ and $\nabla^2 f_0(x^\star) \succ 0$ (is positive definite). Then $x^\star$ is a strict local optimum of [](#optim-problem-unconstrained), or equivalently, $x^\star$ is a strict local minimizer of $f_0$.
 :::

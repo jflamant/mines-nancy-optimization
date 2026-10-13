@@ -31,7 +31,7 @@ Given data $y \in \mathbb{R}^m$ and model matrix $A \in \mathbb{R}^{m\times n}$,
 \end{array}
 :::
 ::::
-For simplicity, we assume that observations $y_1, \ldots y_n$ are linearly independent. This is equivalent to saying that observations are not redundant. The problem [](#prob:linear_LS) is said to be
+For simplicity, we assume that $A$ has full rank, i.e., $\operatorname{rank} A = \min(m, n)$: there are no redundant observations or unknowns. The problem [](#prob:linear_LS) is said to be
 - overdetermined when $m \geq n$ (more observations than unknowns)
 - underdetermined when $m \leq n$ (strictly less observations than unknowns)
 
@@ -175,8 +175,8 @@ K = np.array([[1, 2, 1],
               [1, 2, 1]], dtype=float)
 K /= K.sum()
 
-# Convolve image with kernel
-Y = convolve2d(X, K, mode='same', boundary='symm')
+# Convolve image with kernel (circular boundary conditions)
+Y = convolve2d(X, K, mode='same', boundary='wrap')
 
 # Display original and blurred images side by side
 fig, axs = plt.subplots(1, 2, figsize=(8, 4))
@@ -213,6 +213,7 @@ Y[i,j] = \sum_{m=0}^{k_H-1} \sum_{n=0}^{k_W-1} K[m,n] \; X[i+m-p, \, j+n-q],
 $$
 
 where $p = \lfloor k_H/2 \rfloor$, $q = \lfloor k_W/2 \rfloor$, and appropriate boundary conditions (e.g. zero-padding) are assumed.
+Strictly speaking, this formula is a *correlation*: it coincides with the convolution of $X$ with $K$ when the kernel is symmetric, as is the case here.
 
 **Matrix–vector Form**
 
@@ -322,9 +323,12 @@ from numpy.fft import fft2, ifft2
 
 # compute least squares solution using FFT
 Y_fft = fft2(Y)
-K_fft = fft2(K, s=X.shape)
-eps = 1e-6*np.max(np.abs(K_fft))
-X_hat = np.real(ifft2(Y_fft/(1+K_fft+eps))) # small epsilon for stability
+# zero-pad the kernel to the image size and center it at the origin
+K_pad = np.zeros(X.shape)
+K_pad[:K.shape[0], :K.shape[1]] = K
+K_fft = fft2(np.roll(K_pad, (-(K.shape[0]//2), -(K.shape[1]//2)), axis=(0, 1)))
+eps = 1e-10 # small regularization for stability (some frequencies of K are nearly zero)
+X_hat = np.real(ifft2(Y_fft*np.conj(K_fft)/(np.abs(K_fft)**2 + eps)))
 
 # Display results
 fig, axs = plt.subplots(1, 3, figsize=(10, 3))
@@ -339,4 +343,5 @@ plt.tight_layout()
 plt.show()
 ```
 
+With circular boundary conditions, $A$ is diagonalized by the 2D Fourier transform, so the (slightly regularized) least squares solution is obtained by dividing in the Fourier domain: $\hat{X} = \mathcal{F}^{-1}\left(\dfrac{\overline{\hat K}\,\hat Y}{|\hat K|^2+\varepsilon}\right)$.
 This example demonstrates how 2D deconvolution can be formulated and solved as a linear least squares problem.

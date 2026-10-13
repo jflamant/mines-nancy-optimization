@@ -15,28 +15,28 @@ $$A^\top Ax =  A^\top y$$
 
 ## Existence of solutions
 A few observations are in order:
-- we have $Q = A^\top A$, which shows that $Q \succeq 0$. 
-- we have in addition $p = A^\top y \in \operatorname{Im} Q$. To see this, observe that $\operatorname{Im} A^T A = \operatorname{Im} A^\top$, since $\ker A= \ker A^\top A$ and $\ker A = (\operatorname{Im}A^\top)^\perp$. 
+- we have $Q = A^\top A$, which shows that $Q \succeq 0$.
+- we have in addition $p = A^\top y \in \operatorname{Im} Q$. To see this, observe that $\operatorname{Im} A^T A = \operatorname{Im} A^\top$, since $\ker A= \ker A^\top A$ and $\ker A = (\operatorname{Im}A^\top)^\perp$.
 
 
 Comparing with all possible cases for QPs, we only have two choices:
-- either $Q \succ 0$, and there is a unique solution; 
-- either $Q \succeq 0$ and $\lambda_{\min}(Q) = 0$. Since $p\in \operatorname{Im}Q$, there is an infinite number of solutions. 
+- either $Q \succ 0$, and there is a unique solution;
+- either $Q \succeq 0$ and $\lambda_{\min}(Q) = 0$. Since $p\in \operatorname{Im}Q$, there is an infinite number of solutions.
 
-:::{important} 
+:::{important}
 Linear least square problems admit at least one solution.
 :::
 ## Typology of solutions
 
 The rank of $A$ determines the number of solutions:
-- If $\rank A = n$. This means that $A$ is full column rank ($n$ linearly independent columns). 
-Then $\rank A^\top A = n$ and thus $Q = A^\top A$ is invertible. 
+- If $\rank A = n$. This means that $A$ is full column rank ($n$ linearly independent columns).
+Then $\rank A^\top A = n$ and thus $Q = A^\top A$ is invertible.
 The solution is unique and reads
 $$\hat{x} = Q^{-1}p =  \left(A^\top A\right)^{-1}A^\top y$$
 This case is also referred to as the **overdetermined** case ($m \geq n$).
 - If $\rank A < n$, the matrix $A^\top A$ is singular and there are infinitely many solutions of the form
-$$\hat{x} = x_0 + \mathbf{n}, \quad \text{where } Ax_0 = y,\, \mathbf{n} \in \ker A$$
-This case is referred to as the **underdetermined** case.
+$$\hat{x} = x_0 + \mathbf{n}, \quad \text{where } A^\top A x_0 = A^\top y,\, \mathbf{n} \in \ker A$$
+This case includes the **underdetermined** case ($m < n$), but it can also occur when $m \geq n$ if the columns of $A$ are linearly dependent.
 
 ## About the Moore-Penrose pseudo-inverse
 Consider a linear system of equations $y = Ax$. Often the solution to this system is denoted by

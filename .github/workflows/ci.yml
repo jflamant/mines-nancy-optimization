@@ -8,12 +8,6 @@ env:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: 'pages'
-  cancel-in-progress: false
 
 jobs:
   check_html_build:
@@ -21,33 +15,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-
-      - name: Cache .venv directory
-        uses: actions/cache@v4
-        with:
-          path: .venv
-          key: ${{ runner.os }}-uv-${{ hashFiles('requirements.txt', 'pyproject.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-uv-
       - uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 22.x
 
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
         with:
           version: "latest"
 
-      - name: Install Jupyter Book and dependencies via UV (using cache)
-        run: |
-          uv venv .venv
-          source .venv/bin/activate
-          uv pip install -r requirements.txt || true
-          uv pip install jupyter-book || true
+      - name: Install dependencies
+        run: uv sync --frozen
 
       - name: Build HTML Assets (faster)
-        run: |
-          source .venv/bin/activate
-          uv run jupyter-book build --html --execute
+        run: uv run jupyter-book build --html --execute

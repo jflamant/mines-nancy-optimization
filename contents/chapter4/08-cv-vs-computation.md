@@ -32,7 +32,7 @@ $$\frac{\varepsilon_{k+1}}{\varepsilon_k} \underset{k\rightarrow \infty}{\righta
 $$\frac{\varepsilon_{k+1}}{\varepsilon_k} \underset{k\rightarrow \infty}{\rightarrow} 0$$
 - Quadratic convergence:
 
-$$\frac{\varepsilon_{k+1}}{\varepsilon_k^2} \underset{k\rightarrow \infty}{\rightarrow} \mu, \quad 0 < \mu < 1$$
+$$\frac{\varepsilon_{k+1}}{\varepsilon_k^2} \underset{k\rightarrow \infty}{\rightarrow} \mu, \quad \mu > 0$$
 
 The terms *linear*, *superlinear* and *quadratic* refer to the curves made by the metric $\varepsilon_k$ across iterations, in a semilogy plot, as shown below.
 

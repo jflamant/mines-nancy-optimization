@@ -132,7 +132,7 @@ ani = animation.FuncAnimation(fig, data_gen, 20, blit=False)
 plt.close()
 HTML(ani.to_jshtml())
 :::
-For this choice of initial points, the Nelder-Mead algorithm converges to one of the four stationary points of the Himmelblau function.
+For this choice of initial points, the Nelder-Mead algorithm converges to one of the four local minimizers of the Himmelblau function.
 
 Let us choose different initial points.
 

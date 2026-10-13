@@ -15,7 +15,7 @@ such that the optimization problem [](#prob:nonlinear_ls) can be written as
 :::{math}
 :label:prob:nonlinear_ls_alt
 \begin{array}{ll}
-\minimize &\quad f_0(x):= \Vert R(x)\Vert_2^2, \quad R: \mathbb{R}^n \to \mathbb{R}^m\\
+\minimize &\quad f_0(x):= \frac{1}{2}\Vert R(x)\Vert_2^2, \quad R: \mathbb{R}^n \to \mathbb{R}^m\\
 \st & \quad x \in \mathbb{R}^n
 \end{array}
 :::
@@ -79,6 +79,7 @@ Given initial point $x^{(0)}$, iterate
 $$
 x^{(k+1)} =  x^{(k)} - \left[J(x^{(k)})^\top J(x^{(k)})\right]^{-1} \nabla f_0(x^{(k)})
 $$
+(assuming $J(x^{(k)})$ has full column rank, so that $J(x^{(k)})^\top J(x^{(k)})$ is invertible)
 until a [suitable stopping criterion](./03-general-principles-descent-methods.md#how-to-define-a-stopping-criterion) is met.
 :::
 

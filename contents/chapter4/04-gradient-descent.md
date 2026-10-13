@@ -183,7 +183,7 @@ plt.show()
 
 In a nutshell:
 - $s$ controls the tightness of the sufficient decrease condition: the closer $s$ is to 0, the easier it is to satisfy the condition
-- $\eta$ controls the gaps between successive candidate steps: the closer $\eta$ is to 1, the slower the algorithm, but also the closer $\alpha$ will be of the minimal stepsize that satisfies the decrease condition.
+- $\eta$ controls the gaps between successive candidate steps: the closer $\eta$ is to 1, the slower the algorithm, but also the closer $\alpha$ will be of the largest stepsize that satisfies the decrease condition.
 - in practice, one has to chose $(s, \eta)$ to maintain a good trade-off between convergence rate and computational cost.
 
 

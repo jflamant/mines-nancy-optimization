@@ -23,7 +23,7 @@ $$x^{(k+1)} = x^{(k)} - \alpha_k \left[\nabla^2 f_0(x^{(k)})\right]^{-1}\nabla f
 until a [suitable stopping criterion](./03-general-principles-descent-methods.md#how-to-define-a-stopping-criterion) is met.
 :::
 
-Newton's method requires the function to have positive definite Hessian at iterates $x^{(k)}$: indeed it requires to compute $\left[\nabla^2 f_0(x^{(k)})\right]^{-1}$, which is only defined when the Hessian is invertible (or equivalently, positive definite since it is symmetric).
+Newton's method requires the function to have positive definite Hessian at iterates $x^{(k)}$: indeed it requires to compute $\left[\nabla^2 f_0(x^{(k)})\right]^{-1}$, which is only defined when the Hessian is invertible. To guarantee that the Newton direction is a descent direction, the Hessian must in fact be positive definite (a symmetric invertible matrix may be indefinite).
 When it is the case, the direction $d_k = -\left[\nabla^2 f_0(x^{(k)})\right]^{-1}\nabla f_0(x^{(k)})$ is indeed a descent direction since
 $$ d_k^\top \nabla f_0(x^{(k)}) = - \nabla f_0(x^{(k)})^\top \left[\nabla^2 f_0(x^{(k)})\right]^{-1}\nabla f_0(x^{(k)}) < 0$$
 invoking positive definiteness of the Hessian at $x^{(k)}$.
@@ -51,15 +51,15 @@ Applying Newton's method with constant step size $\alpha_k = 1$
 x^{(k+1)} = x^{(k)} - Q^{-1}(Qx^{(k)} -p) = Q^{-1}p = x^\star
 :::
 Newton's method finds the minimizer in a single iteration, regardless of the starting point $x^{(0)}$!
-On the other hand, if $\alpha_k = \alpha \in (0, 1)$, one has
+On the other hand, if $\alpha_k = \alpha \in (0, 2)$, one has
 :::{math}
 x^{(k+1)} = x^{(k)} - \alpha Q^{-1}(Qx^{(k)} -p) = (1-\alpha) x^{(k)} + \alpha Q^{-1}p.
 :::
 Hence, by recurrence, we get
 :::{math}
-x^{(k+1)} = x^\star + (1-\alpha)^k (x^{(0)} - x^\star)
+x^{(k+1)} = x^\star + (1-\alpha)^{k+1} (x^{(0)} - x^\star)
 :::
-which converges to $x^\star$ as $k\to \infty$.
+which converges to $x^\star$ as $k\to \infty$ since $|1-\alpha| < 1$.
 
 ## Newton step as minimizer of the local quadratic approximation
 
@@ -99,7 +99,7 @@ which is exactly the **Newton step** of [](#alg:newton_method) above, for $\alph
 ## Implications and discussion
 
 The fact that the Newton step can be interpreted as the minimization of the local quadratic approximation has several important implications:
-- whenever $x^{(k)}$ is sufficiently close to a local optimum $x^\star$, higher-order terms become negligible, so Newton’s method exhibits **quadratic convergence**. This explains why Newton’s method can rapidly “lock in” on the solution once it is sufficiently close.
+- whenever $x^{(k)}$ is sufficiently close to a local optimum $x^\star$, higher-order terms become negligible, so Newton’s method exhibits **quadratic convergence** (provided the Hessian is Lipschitz continuous near $x^\star$, $\nabla^2 f_0(x^\star) \succ 0$, and full steps $\alpha_k = 1$ are taken; see Chapter 6). This explains why Newton’s method can rapidly “lock in” on the solution once it is sufficiently close.
 - however, far from the local optimum, the local quadratic approximation might not be very accurate: in this setting, the algorithm may even diverge. In practice, we implement backtracking to ensure sufficient decrease of the objective through the choice of the stepsize $\alpha_k$.
 - Newton's methods leverages the second-order information stored in the Hessian. This allows the algorithm to adapt to the local curvature of the objective function and potentially escape slow progress in ill-conditioned regions.
 
@@ -156,7 +156,7 @@ def gradient_descent(x0, alpha=0.002, max_iter=5000):
             break
     return np.array(xs)
 
-# Newton's Method with damping (line search)
+# Newton's Method (full step, alpha = 1)
 def newton_method(x0, max_iter=50):
     x = x0.copy()
     xs = [x.copy()]

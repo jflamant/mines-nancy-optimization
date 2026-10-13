@@ -40,7 +40,7 @@ Generally speaking, $d_k$ is chosen as
 $$
 d_k = -B_k^{-1}\nabla f_0(x^{(k)})
 $$
-where $B_k$ is symmetric and invertible. In the next sections, we will see several classical choices for the matrix $B_k$:
+where $B_k$ is symmetric positive definite. In the next sections, we will see several classical choices for the matrix $B_k$:
 - $B_k = I_n$ (identity matrix). This is known as the **Gradient Descent (GD) method**.
 - $B_k = \nabla^2 f_0(x^{(k)})$ (Hessian of $f$). This is known as the **Newton's method**.
 - $B_k \approx \nabla^2 f_0(x^{(k)})$ (approx. Hessian). This corresponds to **quasi-Newton** methods, where many strategies for choosing $B_k$ exist.
